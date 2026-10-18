@@ -1,0 +1,941 @@
+<title>幸福な無名時代 読書ガイド</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&display=swap">
+<style>
+/* Layout: one reading column (max 980px) with a sticky section nav; figures and tables may go full width inside the column. */
+:root{
+  --paper:#eef1f4;      /* cool newsprint grey */
+  --paper-2:#ffffff;    /* raised surface */
+  --paper-3:#e2e7ec;    /* sunk surface / rules */
+  --ink:#141c2b;        /* navy ink */
+  --ink-2:#4b5563;      /* secondary text, blue-biased grey */
+  --rule:#c9d1da;
+  --rojo:#b8202e;       /* Momento red: accent */
+  --rojo-soft:#f6dde0;
+  --oro:#b8860b;        /* ochre for secondary marks */
+  --mar:#1f6b8f;        /* Caribbean blue for water and links */
+  --mar-soft:#d7e8f0;
+  --ok:#2e7d4f; --ok-soft:#dcefe3;
+  --warn:#9a6a00; --warn-soft:#f7ebc8;
+  --font-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --font-body:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+  --font-latin:"Bodoni Moda","Didot","Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1522; --paper-2:#182032; --paper-3:#222c40; --ink:#e7eaf0; --ink-2:#a7b0c0; --rule:#334059;
+    --rojo:#ff6670; --rojo-soft:#3a1f26; --oro:#e0b85a; --mar:#6fb6d8; --mar-soft:#1c3346;
+    --ok:#6fd39a; --ok-soft:#163324; --warn:#f0c866; --warn-soft:#3a2f12; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1522; --paper-2:#182032; --paper-3:#222c40; --ink:#e7eaf0; --ink-2:#a7b0c0; --rule:#334059;
+  --rojo:#ff6670; --rojo-soft:#3a1f26; --oro:#e0b85a; --mar:#6fb6d8; --mar-soft:#1c3346;
+  --ok:#6fd39a; --ok-soft:#163324; --warn:#f0c866; --warn-soft:#3a2f12; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.85;margin:0;
+  padding-block:0 4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+a{color:var(--mar);text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--rojo);outline-offset:2px}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.35;text-wrap:balance;margin:0}
+h2{font-size:1.65rem;letter-spacing:.02em}
+h3{font-size:1.2rem}
+p{margin:0}
+.wrap{max-width:980px;margin:0 auto}
+.col{max-width:720px}
+.es{font-family:var(--font-latin);font-style:italic}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rojo);font-family:var(--font-latin);font-style:normal;font-weight:700}
+.muted{color:var(--ink-2)}
+.small{font-size:.88rem}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--paper);border-bottom:1px solid var(--rule);margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px))) 0 calc(-1 * max(16px,env(safe-area-inset-right,0px)));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav ul{list-style:none;margin:0 auto;padding:0;display:flex;gap:.25rem 1.1rem;flex-wrap:wrap;max-width:980px;font-size:.86rem;padding-block:.55rem}
+.nav a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px}
+.nav a:hover{border-color:var(--rojo)}
+
+/* hero */
+.hero{padding-block:3.2rem 2.4rem;border-bottom:3px double var(--rule);display:grid;gap:1.2rem}
+.hero .kicker{font-family:var(--font-latin);font-size:1.05rem;color:var(--ink-2);letter-spacing:.04em}
+.hero h1{font-size:clamp(2rem,6vw,3.3rem);font-weight:800;letter-spacing:.04em}
+.hero .sub{font-size:1.05rem;max-width:720px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;font-size:.86rem;color:var(--ink-2)}
+.masthead{display:inline-block;border:2px solid var(--rojo);color:var(--rojo);padding:.1rem .6rem;font-family:var(--font-latin);font-weight:700;font-size:1rem;letter-spacing:.08em}
+
+/* sections */
+section.sec{padding-block:3rem 1rem;border-bottom:1px solid var(--rule)}
+section.sec > header{display:grid;gap:.4rem;margin-bottom:1.4rem}
+.lede{font-size:1.05rem;max-width:720px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;align-items:start}
+.grid2 > *{min-width:0}
+.stack{display:grid;gap:1rem}
+.stack > *,.hero > *,.art > *,section.sec > *{min-width:0}
+.tblwrap,figure{min-width:0;max-width:100%}
+.note{background:var(--paper-2);border-left:4px solid var(--oro);padding:.9rem 1.1rem;font-size:.95rem}
+.note.rojo{border-left-color:var(--rojo)}
+.note.mar{border-left-color:var(--mar)}
+.callout{background:var(--mar-soft);padding:1rem 1.2rem;border-radius:4px}
+
+/* tables */
+.tblwrap{overflow-x:auto;background:var(--paper-2);border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.6}
+th,td{padding:.55rem .7rem;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{background:var(--paper-3);font-weight:700;font-size:.82rem;letter-spacing:.04em;white-space:nowrap}
+td.d{white-space:nowrap;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+
+/* badges */
+.pill{display:inline-block;font-size:.72rem;line-height:1;padding:.3rem .5rem;border-radius:2px;font-weight:700;letter-spacing:.04em;white-space:nowrap;vertical-align:middle}
+.c-ok{background:var(--ok-soft);color:var(--ok)}
+.c-hi{background:var(--mar-soft);color:var(--mar)}
+.c-mid{background:var(--warn-soft);color:var(--warn)}
+.c-guess{background:var(--rojo-soft);color:var(--rojo)}
+.tag{display:inline-block;font-size:.74rem;padding:.2rem .5rem;border:1px solid var(--rule);border-radius:2px;color:var(--ink-2);white-space:nowrap}
+.tag.mom{border-color:var(--rojo);color:var(--rojo)}
+.tag.vg{border-color:var(--mar);color:var(--mar)}
+
+/* figures */
+figure{margin:0;display:grid;gap:.6rem}
+figure svg{max-width:100%;height:auto;display:block}
+figcaption{font-size:.86rem;color:var(--ink-2);line-height:1.6}
+.figbox{background:var(--paper-2);border:1px solid var(--rule);padding:.6rem}
+.figscroll{overflow-x:auto}
+.figscroll svg{min-width:640px}
+
+/* article cards */
+.art{background:var(--paper-2);border:1px solid var(--rule);padding:1.4rem 1.4rem 1.2rem;display:grid;gap:.9rem;scroll-margin-top:4rem}
+.art .head{display:grid;gap:.35rem}
+.art .num{font-family:var(--font-latin);font-weight:700;font-size:2rem;line-height:1;color:var(--rojo)}
+.art h3{font-size:1.3rem}
+.art .orig{font-family:var(--font-latin);font-size:1.05rem;color:var(--ink-2)}
+.art .facts{display:flex;flex-wrap:wrap;gap:.4rem .6rem;align-items:center;font-size:.86rem}
+.art dl{display:grid;grid-template-columns:7.5em 1fr;gap:.45rem 1rem;margin:0;font-size:.95rem}
+.art dt{font-weight:700;color:var(--ink-2);font-size:.84rem;letter-spacing:.04em;padding-top:.15em}
+.art dd{margin:0;min-width:0}
+@media (max-width:520px){.art dl{grid-template-columns:1fr}.art dt{padding-top:.4em}}
+.art ul{margin:0;padding-left:1.2em}
+.art li{margin:.15em 0}
+blockquote.es{margin:0;padding:.4rem 1rem;border-left:3px solid var(--rojo);font-size:1rem;color:var(--ink)}
+blockquote.es .tr{display:block;font-family:var(--font-body);font-style:normal;font-size:.9rem;color:var(--ink-2);margin-top:.2rem}
+
+/* people cards */
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.8rem}
+.person{background:var(--paper-2);border:1px solid var(--rule);padding:.8rem .95rem;font-size:.9rem;display:grid;gap:.25rem;min-width:0}
+.person b{font-size:1rem}
+.person .role{color:var(--rojo);font-size:.8rem;font-weight:700;letter-spacing:.03em}
+
+/* glossary */
+dl.gloss{display:grid;grid-template-columns:minmax(9em,12em) 1fr;gap:.5rem 1.2rem;margin:0;font-size:.95rem}
+dl.gloss dt{font-weight:700}
+dl.gloss dd{margin:0;min-width:0}
+@media (max-width:520px){dl.gloss{grid-template-columns:1fr}dl.gloss dd{margin-bottom:.4rem}}
+
+details{background:var(--paper-2);border:1px solid var(--rule);padding:.6rem .9rem}
+summary{cursor:pointer;font-weight:700}
+details[open]{padding-bottom:.9rem}
+.src{font-size:.86rem;line-height:1.7}
+.src ol{padding-left:1.4em;margin:0}
+.src li{margin:.3em 0;overflow-wrap:anywhere}
+footer{padding-block:2rem;font-size:.84rem;color:var(--ink-2)}
+.legend{display:flex;flex-wrap:wrap;gap:.5rem 1rem;font-size:.84rem;align-items:center}
+.sw{display:inline-block;width:.9em;height:.9em;border-radius:50%;vertical-align:-.1em;margin-right:.3em}
+</style>
+
+<div class="nav" aria-label="ページ内の目次"><ul>
+<li><a href="#book">この本</a></li>
+<li><a href="#career">記者の歩み</a></li>
+<li><a href="#map">地図</a></li>
+<li><a href="#venezuela">1958年のベネズエラ</a></li>
+<li><a href="#overlay">記事×時代</a></li>
+<li><a href="#articles">13篇ガイド</a></li>
+<li><a href="#people">人物</a></li>
+<li><a href="#glossary">用語</a></li>
+<li><a href="#sources">確度と出典</a></li>
+</ul></div>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker"><span class="masthead">MOMENTO · CARACAS · 1958</span></div>
+  <h1>『幸福な無名時代』<br>読書ガイド</h1>
+  <p class="sub">ガブリエル・ガルシア＝マルケス、30歳から31歳。独裁が倒れた直後のカラカスで、週刊誌の記者として書いた13篇のルポルタージュを、書かれた週の出来事と重ねて読むための予備資料です。原題は <span class="es">Cuando era feliz e indocumentado</span>（幸福で、身分証もなかったころ）。</p>
+  <div class="meta">
+    <span>対象：ちくま文庫 新版（旦敬介訳、2026年10月）</span>
+    <span>原記事：Momento 誌 9篇／Venezuela Gráfica 誌 4篇（1958年1〜8月）</span>
+    <span>作成：2026年10月19日</span>
+  </div>
+  <p class="note small">このページの事実関係は、各項目に <span class="pill c-ok">確認</span> <span class="pill c-hi">高</span> <span class="pill c-mid">中</span> <span class="pill c-guess">推測</span> の確度を付けています。Gilard 編『Obra periodística』の現物とちくま文庫新版の巻末注は未参照のため、巻末の「確度と出典」も合わせてご覧ください。</p>
+</header>
+
+<!-- ============ 1. この本 ============ -->
+<section class="sec" id="book">
+<header>
+  <p class="eyebrow">1 · El libro</p>
+  <h2>この本はどこから来たか</h2>
+  <p class="lede">日本語版は、ジャック・ジラール編『Obra periodística（ジャーナリズム作品集）』のベネズエラ時代の部から、訳者が13篇を選んだものです。書名は1973年にカラカスで出た別の選集の題を訳したものと考えられます。</p>
+</header>
+<div class="grid2">
+  <div class="stack">
+    <h3>版の履歴</h3>
+    <div class="tblwrap"><table>
+      <thead><tr><th>刊行</th><th>形態</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr><td class="d">1991年1月18日</td><td>筑摩書房 単行本（叢書 Nonfiction Vintage）</td><td>旦敬介訳。201頁（版元サイトは208頁）</td></tr>
+        <tr><td class="d">1995年3月23日</td><td>ちくま文庫（か-5-2）</td><td>224頁。配列は初出順ではない</td></tr>
+        <tr><td class="d">2026年10月8日</td><td>ちくま文庫 新版（か-5-5）</td><td>240頁。注と新しい解説つき。配列はほぼ初出順に改められ、訳題も一部改訂（取次データでは発売日10月13日）</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note small">図書館の書誌注記：「Obra periodistica, volumen VI, De Europa y America II (1955-1960) の中から選んで訳出したもの」。「De Europa y América」を2冊に分けた6巻本は Oveja Negra 版（ボゴタ／カラカス、1984年）で、その第6巻が底本と考えられます <span class="pill c-hi">高</span>。ブルゲラ版（バルセロナ、1981〜83年）では同じ内容が1冊の第4巻です。</div>
+  </div>
+  <div class="stack">
+    <h3>書名の由来と、1973年選集との関係</h3>
+    <p class="small">1973年、カラカスの小出版社 El Ojo del Camello から、Momento 誌1958年1〜5月の記事12篇を集めた <span class="es">Cuando era feliz e indocumentado</span>（序文 Manuel Caballero）が出ました。日本語版の書名はこれを訳したものと考えられますが（訳者自身がそう述べた文章は未確認）、収録内容は一致しません。共通するのは7篇で、日本語版には Venezuela Gráfica 誌の無署名記事など6篇が独自に加わり、1973年版の5篇は入っていません <span class="pill c-hi">高</span>。</p>
+    <figure class="figbox">
+      <svg viewBox="0 0 640 300" role="img" aria-label="1973年選集と日本語版の収録記事の重なり。共通7篇、日本語版のみ6篇、1973年版のみ5篇。">
+        <g font-family="Noto Sans JP, sans-serif" font-size="11" fill="currentColor">
+          <rect x="10" y="60" width="410" height="200" rx="6" fill="var(--oro)" fill-opacity=".16" stroke="var(--oro)" stroke-width="1.5"/>
+          <rect x="220" y="76" width="410" height="200" rx="6" fill="var(--rojo)" fill-opacity=".12" stroke="var(--rojo)" stroke-width="1.5"/>
+          <text x="18" y="40" font-size="12" font-weight="700">1973年選集 Cuando era feliz e indocumentado（12篇）</text>
+          <text x="18" y="54" font-size="10" fill="var(--ink-2)">Momento 誌 1958年1〜5月の記事のみ</text>
+          <text x="628" y="292" font-size="12" font-weight="700" text-anchor="end">日本語版『幸福な無名時代』（13篇）</text>
+          <text x="20" y="84" font-weight="700" fill="var(--oro)">1973年版のみ 5篇</text>
+          <text x="20" y="106">El año más famoso del mundo</text>
+          <text x="20" y="124">La generación de los perseguidos</text>
+          <text x="20" y="142">Colombia: al fin hablan los votos</text>
+          <text x="20" y="160">Mi hermano Fidel</text>
+          <text x="20" y="178">Condenados a 20 años…</text>
+          <text x="232" y="100" font-weight="700">共通 7篇</text>
+          <text x="232" y="120">戦う聖職者</text>
+          <text x="232" y="138">潜伏からの帰還</text>
+          <text x="232" y="156">さよなら、ベネズエラ</text>
+          <text x="232" y="174">命の猶予は12時間</text>
+          <text x="232" y="192">干上がったカラカス</text>
+          <text x="232" y="210">セネガルの譲渡</text>
+          <text x="232" y="228">7人のシチリア人の死</text>
+          <text x="436" y="100" font-weight="700" fill="var(--rojo)">日本語版のみ 6篇</text>
+          <text x="436" y="120">市民が通りを埋めた日</text>
+          <text x="436" y="138">杭につながれて4年</text>
+          <text x="436" y="162" fill="var(--mar)">貧困のなかの楽園</text>
+          <text x="436" y="180" fill="var(--mar)">内なる陰謀（72時間）</text>
+          <text x="436" y="198" fill="var(--mar)">議長はのらりくらり</text>
+          <text x="436" y="216" fill="var(--mar)">犠牲を払うに値する</text>
+          <text x="436" y="244" font-size="10" fill="var(--mar)">青の4篇は Venezuela Gráfica 誌</text>
+        </g>
+      </svg>
+      <figcaption>1973年選集と日本語版の収録記事の重なり。日本語版は書名だけを1973年版から借り、記事は Gilard 版の1958年の部から選び直している。</figcaption>
+    </figure>
+  </div>
+</div>
+<div class="stack" style="margin-top:1.4rem">
+  <h3>13篇の初出一覧（新版の配列）</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>#</th><th>邦題（新版）</th><th>原題</th><th>媒体・頁</th><th>初出日</th><th>署名</th><th>確度</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><a href="#a1">市民が通りを埋めた日</a></td><td class="es">El pueblo en la calle</td><td><span class="tag mom">Momento</span> p.5</td><td class="d">1958-01-24</td><td>プリニオと共作・無署名</td><td><span class="pill c-ok">確認</span></td></tr>
+      <tr><td>2</td><td><a href="#a2">戦う聖職者</a></td><td class="es">El clero en la lucha</td><td><span class="tag mom">Momento</span> N°82 pp.28-35</td><td class="d">1958-02-07</td><td>署名</td><td><span class="pill c-ok">確認</span></td></tr>
+      <tr><td>3</td><td><a href="#a3">杭につながれて4年</a></td><td class="es">Cuatro años amarrado a un palo</td><td><span class="tag mom">Momento</span> pp.38-39, 56-57</td><td class="d">1958-01-10</td><td>筆名 Gastón Galdós</td><td><span class="pill c-ok">確認</span></td></tr>
+      <tr><td>4</td><td><a href="#a4">潜伏からの帰還</a></td><td class="es">Kelly sale de la penumbra</td><td><span class="tag mom">Momento</span> pp.24-26</td><td class="d">1958-01-24</td><td>署名（可能性が高い）</td><td><span class="pill c-ok">確認</span></td></tr>
+      <tr><td>5</td><td><a href="#a5">さよなら、ベネズエラ</a></td><td class="es">Adiós, Venezuela</td><td><span class="tag mom">Momento</span> N°85 pp.40-47</td><td class="d">1958-02-28</td><td>署名</td><td><span class="pill c-ok">確認</span></td></tr>
+      <tr><td>6</td><td><a href="#a6">命の猶予は12時間</a></td><td class="es">Sólo doce horas para salvarlo</td><td><span class="tag mom">Momento</span> pp.29-32, 54</td><td class="d">1958-03-14</td><td>署名</td><td><span class="pill c-ok">確認</span></td></tr>
+      <tr><td>7</td><td><a href="#a7">1958年6月6日、干上がったカラカス</a></td><td class="es">6 de junio de 1958: Caracas sin agua</td><td><span class="tag mom">Momento</span> pp.41-45</td><td class="d">1958-04-11</td><td>署名</td><td><span class="pill c-ok">確認</span></td></tr>
+      <tr><td>8</td><td><a href="#a8">セネガルの譲渡</a></td><td class="es">Senegal cambia de dueño</td><td><span class="tag mom">Momento</span> pp.30-35</td><td class="d">1958-05-02</td><td>署名</td><td><span class="pill c-ok">確認</span></td></tr>
+      <tr><td>9</td><td><a href="#a9">7人のシチリア人の死</a></td><td class="es">Estos ojos vieron 7 sicilianos muertos</td><td><span class="tag mom">Momento</span> pp.36-39</td><td class="d">1958-05-16</td><td>署名</td><td><span class="pill c-ok">確認</span></td></tr>
+      <tr><td>10</td><td><a href="#a10">貧困のなかの楽園</a></td><td class="es">Nivel de vida: cero</td><td><span class="tag vg">Venezuela Gráfica</span> pp.8-9</td><td class="d">1958-07-25</td><td>署名 G.G.M.</td><td><span class="pill c-ok">確認</span></td></tr>
+      <tr><td>11</td><td><a href="#a11">内なる陰謀――72時間</a></td><td class="es">72 horas que conmovieron a Venezuela</td><td><span class="tag vg">Venezuela Gráfica</span></td><td class="d">1958-08-01</td><td>無署名・帰属は推定</td><td><span class="pill c-guess">帰属 推定</span></td></tr>
+      <tr><td>12</td><td><a href="#a12">議長はのらりくらり</a></td><td class="es">Mientras los partidos deciden, Larrazábal deshoja margaritas</td><td><span class="tag vg">Venezuela Gráfica</span></td><td class="d">1958-08-08</td><td>無署名・帰属は推定</td><td><span class="pill c-guess">帰属 推定</span></td></tr>
+      <tr><td>13</td><td><a href="#a13">ベネズエラは犠牲を払うに値する</a></td><td class="es">Venezuela bien vale un sacrificio</td><td><span class="tag vg">Venezuela Gráfica</span> pp.10-11</td><td class="d">1958-08-15</td><td>署名 G.G.M.</td><td><span class="pill c-ok">確認</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">日付と頁はジラール編『Obra periodística』の年表・注記（イタリア語訳の部分プレビューと各版の断片）、および1983年の雑誌目録『Fuentes para el estudio del 23 de enero de 1958』による。「確認」は号・日付・頁が複数の書誌で一致したもの。記事11・12は無署名で、GGM 作と断定したのはジラールの判断（「帰属しうる」）。</p>
+</div>
+</section>
+
+<!-- ============ 2. 記者の歩み ============ -->
+<section class="sec" id="career">
+<header>
+  <p class="eyebrow">2 · El reportero</p>
+  <h2>記者ガルシア＝マルケス、1947〜1961</h2>
+  <p class="lede">1948年のカルタヘナから1961年のニューヨークまで、彼の本業は新聞・雑誌・通信社の記者でした。カラカスの1958年は、その後半にあたります。</p>
+</header>
+<figure class="figbox figscroll" id="careerfig">
+  <svg id="career-svg" viewBox="0 0 1100 360" role="img" aria-label="1947年から1961年までのガルシア＝マルケスの所属媒体と居住地の帯グラフ。1958年のカラカス滞在を強調。"></svg>
+  <figcaption>所属媒体（上段）と居住地（下段）。赤い帯が本書の13篇が掲載された期間（1958年1〜8月）。日付は Gerald Martin の伝記と Centro Gabo の年譜による。</figcaption>
+</figure>
+<div class="tblwrap" style="margin-top:1.2rem"><table>
+  <thead><tr><th>年月日</th><th>場所</th><th>出来事</th><th>確度</th></tr></thead>
+  <tbody>
+    <tr><td class="d">1947年9月13日</td><td>ボゴタ</td><td>国立大学法学部の学生。最初の短編「三度目の諦め」が El Espectador 紙に載る</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1948年4月9日</td><td>ボゴタ</td><td>ガイタン暗殺と「ボゴタソ」。大学閉鎖、カルタヘナへ</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1948年5月21日</td><td>カルタヘナ</td><td>El Universal 紙に最初の記事。記者生活の始まり</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1950年1月5日</td><td>バランキージャ</td><td>El Heraldo 紙のコラム「La Jirafa」を筆名 Septimus で始める。「バランキージャ・グループ」の時代</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1954年2月</td><td>ボゴタ</td><td>El Espectador 紙の正記者（月給900ペソ）。映画評も担当</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1955年4月</td><td>ボゴタ</td><td>『ある遭難者の物語』を14回連載。軍の公式発表と食い違い、政権を刺激する</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1955年7月17日</td><td>ジュネーブ</td><td>欧州特派員として四大国首脳会談を取材。以後ローマ、ウィーン、12月にパリ</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1956年1月6日</td><td>パリ／ボゴタ</td><td>ロハス・ピニージャ政権が El Espectador を発行停止に追い込む。パリで困窮し『大佐に手紙は来ない』を書く（1957年1月脱稿）</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1957年6〜9月</td><td>東欧</td><td>東ドイツ、モスクワ、ハンガリーを旅し、「鉄のカーテンの90日」を書く</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1957年12月16日</td><td>ロンドン</td><td>プリニオ・アプレヨ・メンドサから電報。Momento 誌の職を用意したという</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d"><b>1957年12月23日</b></td><td>カラカス</td><td>マイケティア空港に到着。サン・ベルナルディノ地区のイタリア人経営のペンションへ</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d"><b>1958年1月23日</b></td><td>カラカス</td><td>ペレス・ヒメネス独裁の崩壊。翌24日の号にプリニオと共作の社説「おはよう、自由」と「市民が通りを埋めた日」</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1958年3月21日</td><td>バランキージャ</td><td>メルセデス・バルチャと結婚（金曜日午前11時、ペルペトゥオ・ソコロ教会）。カラカスに戻り Edificio Roraima に新居</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1958年5月中旬</td><td>カラカス</td><td>ニクソン副大統領襲撃（5月13日）をめぐる社主の社説に抗議し、プリニオとともに Momento を辞職</td><td><span class="pill c-hi">高</span></td></tr>
+    <tr><td class="d">1958年6月27日</td><td>カラカス</td><td>カプリレス系の大衆誌 Venezuela Gráfica の編集長（jefe de redacción）に。記事は無署名が多い</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1959年1月18〜19日</td><td>ハバナ</td><td>革命政府の「真実作戦」に招かれキューバへ。旧軍人ソサ・ブランコの公開裁判を傍聴</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1959年5月</td><td>ボゴタ</td><td>キューバの通信社 Prensa Latina のボゴタ支局を開く。8月24日に長男ロドリゴ誕生</td><td><span class="pill c-ok">確認</span></td></tr>
+    <tr><td class="d">1961年1月</td><td>ニューヨーク</td><td>Prensa Latina ニューヨーク支局へ。春に辞職し、6月にバスで米国南部を縦断してメキシコへ（到着は6月下旬または7月2日）</td><td><span class="pill c-hi">高</span></td></tr>
+  </tbody>
+</table></div>
+</section>
+
+<!-- ============ 3. 地図 ============ -->
+<section class="sec" id="map">
+<header>
+  <p class="eyebrow">3 · Los mapas</p>
+  <h2>地図で見る</h2>
+  <p class="lede">生まれたカリブ海岸のコロンビアと、記事の舞台カラカスは、同じ海に面しています。カラカスは海岸山脈アビラの南側、標高900mほどの谷にある都市です。</p>
+</header>
+<figure class="figbox figscroll">
+  <svg id="map-svg" viewBox="0 0 900 560" role="img" aria-label="コロンビアとベネズエラの略地図。ガルシア＝マルケスゆかりの町と、1958年の記事に関わる地点。"></svg>
+  <figcaption>略地図（海岸線は簡略化）。赤はガルシア＝マルケスの生活史に関わる町、青は1958年の記事と政変に関わる地点。グアシナ島は正確な位置が特定できず「付近」を示す。</figcaption>
+</figure>
+<div class="grid2" style="margin-top:1.2rem">
+  <figure class="figbox">
+    <svg id="caracas-svg" viewBox="0 0 560 330" role="img" aria-label="カラカスの谷の模式図。北にアビラ山、山の向こうに港ラ・グアイラとマイケティア空港。谷の中にミラフローレス宮殿、エル・シレンシオ、サン・ベルナルディノ、ラ・カルロタ空港。"></svg>
+    <figcaption>カラカスの谷（模式図）。1958年1月1日の反乱機はマラカイ基地から飛来し、1月23日のペレス・ヒメネスはラ・カルロタ空港から逃亡した。GGM の下宿と新居はサン・ベルナルディノ地区にあった。</figcaption>
+  </figure>
+  <div class="stack">
+    <h3>地図の見方</h3>
+    <ul class="small" style="margin:0;padding-left:1.2em">
+      <li><b>アラカタカ</b>（1927年生）、<b>バランキージャ</b>（1950〜53年、1958年の結婚式）、<b>カルタヘナ</b>（1948年）、<b>ボゴタ</b>（1947〜48年、1954〜55年、1959〜60年）が彼の生活圏。</li>
+      <li><b>マイケティア</b>は1957年12月23日の到着地で、1958年5月13日にニクソンが降り立った空港でもある。</li>
+      <li><b>マラカイ</b>の空軍基地から1958年1月1日の反乱機が飛び立った。<b>サン・クリストバル</b>（タチラ州）はペレス・ヒメネスの出身州で、1960年にカストロ・レオンが侵攻した。</li>
+      <li><b>グアシナ島</b>（オリノコ・デルタ）は独裁期の政治犯収容所。<b>シウダー・ボリバル</b>は収容所閉鎖後の移送先。</li>
+      <li><b>シウダー・トルヒージョ</b>（現サント・ドミンゴ）は1月23日の逃亡先、<b>ハバナ</b>は1959年1月の渡航先。地図の外にある。</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- ============ 4. 1958年のベネズエラ ============ -->
+<section class="sec" id="venezuela">
+<header>
+  <p class="eyebrow">4 · Venezuela, 1958</p>
+  <h2>1958年のベネズエラ：何が起きていたか</h2>
+  <p class="lede">石油で潤う軍事独裁が、教会・学生・労働者・軍の一部の離反で崩れ、1年かけて選挙と政党協定による民政に移った年です。13篇はすべてこの年の1月から8月に載りました。</p>
+</header>
+<div class="grid2">
+  <div class="stack">
+    <h3>独裁の構造（1952〜57年）</h3>
+    <p class="small">マルコス・ペレス・ヒメネス（陸軍）は1952年12月に暫定大統領となり、1953年に正式就任。秘密警察 Seguridad Nacional（長官ペドロ・エストラーダ）が反対派を拘束し、オリノコ・デルタのグアシナ島などの収容所に送りました。首都では高速道路や巨大団地「2 de Diciembre」（独裁崩壊後「23 de Enero」と改名）の建設が進み、イタリア・スペイン・ポルトガルからの移民が大量に流入しました（イタリア生まれの住民は1950年の約4.4万人から1961年の約12.2万人へ）。</p>
+    <h3>崩壊までの経過（1957年5月〜1958年1月）</h3>
+    <div class="tblwrap"><table>
+      <tbody>
+        <tr><td class="d">1957-05-01</td><td>アリアス・ブランコ大司教の司教書簡が各教会で読み上げられ、労働者の貧困を告発。教会と政権の対立が表面化（→ 記事2「戦う聖職者」）</td></tr>
+        <tr><td class="d">1957-06</td><td>各党の地下組織が「愛国評議会（Junta Patriótica）」を結成。議長は URD の記者ファブリシオ・オヘダ</td></tr>
+        <tr><td class="d">1957-12-15</td><td>国民投票（plebiscito）で任期延長を「承認」。不正と広くみなされる</td></tr>
+        <tr><td class="d">1958-01-01</td><td>空軍を中心とする反乱。マラカイの機がカラカス上空を飛び、宮殿などを攻撃。失敗</td></tr>
+        <tr><td class="d">1958-01-10〜13</td><td>内閣改造。エストラーダ（秘密警察）とバジェニージャ・ランス（内相）が解任</td></tr>
+        <tr><td class="d">1958-01-21</td><td>報道ストに続きゼネスト。市街で衝突</td></tr>
+        <tr><td class="d"><b>1958-01-23</b></td><td>未明、ペレス・ヒメネスがラ・カルロタ空港から専用機「ラ・バカ・サグラダ（聖なる牛）」でドミニカへ逃亡。ラレサバル海軍少将を議長とする軍事評議会が発足。群衆が秘密警察本部を襲い、政治犯が解放される（→ 記事1）</td></tr>
+        <tr><td class="d">1958-01-24</td><td>民衆の圧力で評議会から2人の大佐が外され、実業家エウヘニオ・メンドサらが加わる。この前後の宮殿での場面が『族長の秋』の着想源になる</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="stack">
+    <h3>民政移管の1年（1958年2月〜1959年2月）</h3>
+    <div class="tblwrap"><table>
+      <tbody>
+        <tr><td class="d">1958-02</td><td>亡命指導者が帰国。2月9日にベタンクール（AD）がマイケティアに戻り、ビジャルバ（URD）、カルデラ（COPEI）、マチャード（PCV）とそろう</td></tr>
+        <tr><td class="d">1958-05-13</td><td>ニクソン米副大統領の車列が空港からの道で襲われる。米軍は介入準備。Momento 社主の謝罪的社説が GGM らの辞職につながる</td></tr>
+        <tr><td class="d">1958-07-22〜24</td><td>国防相カストロ・レオンが将校らの要求を評議会に突きつけ「宣言」（辞任を22日とする資料と24日とする資料がある）。ゼネストと市民の動員で失敗し、24日に出国（→ 記事11「72時間」）</td></tr>
+        <tr><td class="d">1958-08</td><td>各党が大統領候補の選定をめぐって駆け引き。ラレサバル議長の出馬が焦点に（→ 記事12・13）</td></tr>
+        <tr><td class="d">1958-09-07</td><td>軍警察系のクーデター未遂（モンカダ・ビダル中佐ら）</td></tr>
+        <tr><td class="d">1958-10-31</td><td>プント・フィホ協定。AD・COPEI・URD が選挙結果の尊重と連立を約束。共産党は除外</td></tr>
+        <tr><td class="d">1958-11-13〜14</td><td>ラレサバルが出馬のため議長を辞任。後任はエドガル・サナブリア</td></tr>
+        <tr><td class="d">1958-12-07</td><td>大統領選挙。ベタンクール 49.2%、ラレサバル 34.6%、カルデラ 16.2%</td></tr>
+        <tr><td class="d">1959-02-13</td><td>ベタンクール就任。GGM はこの直前の1月にハバナへ、5月にボゴタへ移る</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note mar small"><b>コロンビアとの並行</b>　隣国コロンビアでも1957年5月10日に軍事独裁（ロハス・ピニージャ）が倒れ、二大政党の交代制「国民戦線」が1958年8月に始まりました。どちらの国でも政党協定が左派を除外した点が共通します。GGM はコロンビアの政変をパリで、ベネズエラの政変をカラカスの現場で見ました。</div>
+  </div>
+</div>
+<div class="stack" style="margin-top:1.4rem">
+  <h3>職場：Momento 誌と Venezuela Gráfica 誌</h3>
+  <div class="grid2">
+    <div class="note rojo small"><b>Momento</b>（週刊、カラカス）。社主はマラカイボの日刊紙 Panorama の社長でもあるカルロス・ラミレス・マクグレゴル。編集長はコロンビア人の友人プリニオ・アプレヨ・メンドサで、GGM を呼び寄せた。編集委員会には後の大統領ルイス・エレーラ・カンピンスもいた。1958年1月、秘密警察が編集部を急襲して居合わせた全員を連行したが、2人は外出中で難を逃れた。1月24日号に2人で創刊以来初の社説「おはよう、自由」を書く。5月、ニクソン襲撃を遺憾とする社主の声明をめぐって2人とも辞職した。</div>
+    <div class="note mar small"><b>Venezuela Gráfica</b>（カプリレス系の大衆誌）。1958年6月27日から1959年5月1日まで GGM が編集長（肩書は資料により jefe／secretario de redacción）。記事は無署名が多く、署名入りは記事10と13の2本だけ。記事11・12は編者ジラールが「GGM に帰属しうる」とした無署名記事。「Venezuela Pornográfica」とあだ名される扇情的な誌面だった。プリニオは同系列の Élite 誌へ。</div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 5. 記事×時代 ============ -->
+<section class="sec" id="overlay">
+<header>
+  <p class="eyebrow">5 · Los artículos y su tiempo</p>
+  <h2>記事と時代を重ねる</h2>
+  <p class="lede">1958年を1本の帯にして、上段に政治の出来事、中段に GGM の身辺、下段に13篇の掲載日を並べました。13篇は独裁崩壊の2週間前から、政党協定の2か月半前までの7か月余りに載っています。</p>
+</header>
+<figure class="figbox figscroll">
+  <svg id="overlay-svg" viewBox="0 0 960 484" role="img" aria-label="1958年の3段年表。上段は政治、中段はガルシア＝マルケスの身辺、下段は13篇の掲載日。"></svg>
+  <figcaption>番号は本書の記事番号。赤は Momento 誌、青は Venezuela Gráfica 誌。中抜きは無署名・筆名の記事で、GGM 作とするのは編者ジラールの判断によるもの（1は共作、3は筆名、11・12は無署名）。</figcaption>
+</figure>
+<div class="legend" style="margin-top:.8rem">
+  <span><span class="sw" style="background:var(--rojo)"></span>Momento</span>
+  <span><span class="sw" style="background:var(--mar)"></span>Venezuela Gráfica</span>
+  <span><span class="sw" style="border:2px solid var(--ink-2);background:transparent"></span>無署名・筆名・共作</span>
+</div>
+<div class="note small" style="margin-top:1rem"><b>読む順番の提案</b>　新版の配列はほぼ掲載順なので、本の順に読むと「独裁崩壊の熱狂（1〜5）→ 日常の事件と社会（6〜10）→ 政局の駆け引き（11〜13）」と、カラカスの1年が変化していくのが追えます。記事3「杭につながれて4年」だけは1月10日の掲載で、独裁崩壊前の検閲下に出た号です。記事6と結婚（3月21日）、記事9と辞職（5月16日号）のように、記事の日付と身辺の出来事が重なる箇所にも注目してください。</div>
+</section>
+
+<!-- ============ 6. 13篇ガイド ============ -->
+<section class="sec" id="articles">
+<header>
+  <p class="eyebrow">6 · Guía de lectura</p>
+  <h2>13篇ガイド</h2>
+  <p class="lede">各記事について、扱われた人物と事件、掲載週の出来事、後の作品とのつながり、読みどころをまとめました。「内容」は本文の筋を明かすので、先に読んでから参照してもよいでしょう。</p>
+</header>
+<div class="stack" id="article-list">
+<article class="art" id="a1">
+  <div class="head">
+    <div class="num">1</div>
+    <h3>市民が通りを埋めた日</h3>
+    <p class="orig">El pueblo en la calle</p>
+    <div class="facts"><span class="tag mom">Momento</span><span class="tnum">1958年1月24日号 p.5</span><span class="tag">プリニオとの共同執筆（無署名）</span><span class="pill c-ok">日付 確認</span></div>
+  </div>
+  <blockquote class="es">Caracas no dormía en las primeras horas de la madrugada del jueves 23 de enero… Marcos Pérez Jiménez abandonaba el país.<span class="tr">1月23日木曜日の未明、カラカスは眠っていなかった。……マルコス・ペレス・ヒメネスが国を去ろうとしていた。</span></blockquote>
+  <dl>
+    <dt>内容</dt><dd>1月21日のゼネストから23日未明の独裁者の逃亡までを、ほぼ同時進行で追った速報ルポ。21日からラ・カルロタ空港で逃亡機が暖機されていたこと、団地「2 de Diciembre」で警官が市民に発砲していた同じ時刻にミラフローレス宮殿では「静かな家庭の夜」が過ぎていたこと、午前3時過ぎに市の上空を飛んだ飛行機が「男は倒れた」という合図になったこと、地下の愛国評議会がラジオ局に移って新議長の名を告げたことが描かれる。</dd>
+    <dt>執筆者</dt><dd>編者ジラールは、同じ号の社説「おはよう、自由（¡Buenos días, libertad!）」とこのルポを、GGM とプリニオ・アプレヨ・メンドサの共同執筆として巻末の付録に収めている。ジェラルド・マーティンも社説を2人の共作とし、このルポを写真つきの長大な記事として記す。<b>本書で GGM の作として読むときも、2人の仕事である点は頭に置いておくとよい</b>。</dd>
+    <dt>その週</dt><dd>1月21日ゼネスト、23日未明に独裁崩壊、同日ラレサバル海軍少将を議長とする軍事評議会が発足。24日、民衆の抗議で評議会の2人の大佐が外され、実業家が加わった。27日、カラカスに亡命していたペロンがドミニカへ去った。</dd>
+    <dt>後の作品</dt><dd>プリニオは『グアバの香り』で、2人がサン・ベルナルディノのバルコニーから1月23日午前2時ごろの飛行機を見たこと、評議会が会議中の宮殿控えの間で、泥だらけの軍靴に機関銃の将校が後ずさりで出てきて亡命していくのを見て GGM が「権力の神秘の直観」を得たこと、<b>『族長の秋』の構想がこの1958年のカラカスで生まれた</b>ことを記す。GGM 自身の1981年のコラムにも「絨毯に残った軍靴の泥の跡」の一節がある。場所はミラフローレスか向かいのパラシオ・ブランコか、日付は23日か25日ごろか、資料で食い違う。</dd>
+    <dt>読みどころ</dt><dd>宮殿の静かな夜と、街の発砲を同じ時間軸に並べる交差編集。速報記事なのに、主役は名もない市民の動きである。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a2">
+  <div class="head">
+    <div class="num">2</div>
+    <h3>戦う聖職者</h3>
+    <p class="orig">El clero en la lucha</p>
+    <div class="facts"><span class="tag mom">Momento</span><span class="tnum">1958年2月7日 N°82 pp.28-35</span><span class="tag">署名記事</span><span class="pill c-ok">確認</span></div>
+  </div>
+  <blockquote class="es">El primero de mayo del año pasado —fiesta del trabajo—, los curas párrocos de Venezuela leyeron desde los púlpitos una carta pastoral del arzobispo de Caracas…<span class="tr">昨年5月1日、労働者の祝日に、ベネズエラの主任司祭たちは説教壇からカラカス大司教の司教書簡を読み上げた……</span></blockquote>
+  <dl>
+    <dt>内容</dt><dd>1957年5月1日の司教書簡から1958年1月のゼネストまで、カトリック教会が独裁への抵抗に加わっていく8か月を、何人もの聖職者の行動で再構成する。大聖堂の謄写版で刷られ鐘楼から撒かれた反政府ビラ、1月21日正午にゼネスト開始を告げた教会の鐘、拘禁された司祭たちを説得に来た独裁者の特使などの挿話が、面談や電話の日時とともに積み上げられる。</dd>
+    <dt>人物・事件</dt><dd><b>ラファエル・アリアス・ブランコ</b>大司教の書簡は労働者の貧困を告発し、政権との対立の起点となった。<b>バジェニージャ・ランス</b>内相は翌日に大司教を呼びつけ、8月には筆名で反論を書いた。カトリック紙 La Religión の編集長<b>エルナンデス・チャペジン</b>神父、大聖堂の<b>サラトゥ</b>神父、ラ・パストラ教区の<b>アルバレス</b>神父らが登場し、秘密警察長官<b>ペドロ・エストラーダ</b>本人の尋問も描かれる。</dd>
+    <dt>その週</dt><dd>亡命指導者の帰国が続いた週。2月9日（日）にはベタンクール（AD）がマイケティアに戻り、GGM は翌週2月14日号で「迫害された者たちの世代（La generación de los perseguidos）」として帰国した4人を描いた（本書未収録）。</dd>
+    <dt>後の作品</dt><dd>ジラールは、ひとつの主題を数時間でも数年でも1本の物語にまとめ上げるこの時期の手法の例として挙げる。教会と独裁者の対立という構図は『族長の秋』の主題と重なるようにも読めるが、直接の影響関係を示す発言は見つかっていない（推測）。</dd>
+    <dt>読みどころ</dt><dd>大司教から一教区の神父まで、階層の違う聖職者を追う群像の構成。「7月11日午後2時」のように時刻を刻む書き方は、『予告された殺人の記録』の時間の扱いに通じる。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a3">
+  <div class="head">
+    <div class="num">3</div>
+    <h3>杭につながれて4年</h3>
+    <p class="orig">Cuatro años amarrado a un palo</p>
+    <div class="facts"><span class="tag mom">Momento</span><span class="tnum">1958年1月10日 pp.38-39, 56-57</span><span class="tag">筆名 Gastón Galdós</span><span class="pill c-ok">日付 確認</span><span class="pill c-hi">帰属 ジラールの判断</span></div>
+  </div>
+  <blockquote class="es">Esta es la historia de Miguel Sifontes, un venezolano común y corriente que hace 30 años salió de su casa por una disputa con su mujer, y regresó la semana pasada.<span class="tr">これは、ごく普通のベネズエラ人ミゲル・シフォンテスの物語である。30年前に妻との口論で家を出て、先週帰ってきた。</span></blockquote>
+  <dl>
+    <dt>内容</dt><dd>妻と口論して家を出たまま30年さまよった男の話。スペイン語を忘れ、猿や蛇を食べ、靴を履いていないという理由でマナウスで投獄され、28歳で老人ホームに入れられた。ある金曜日に先住民の集団に捕らえられ、小屋の支柱に約1.5mの縄でつながれて4年間を過ごす。最初は毎朝杭に線を刻んで日を数えたが、「難破者の物語では古典的な伝統」であるその習慣もやがて失う。帰郷は1957年のクリスマスごろ。</dd>
+    <dt>署名</dt><dd>掲載時の署名は「ガストン・ガルドス」。ジラールは、G.G. の頭文字、筆名が GGM の入社直後から現れること、不在だった社主には書けない最近の出来事であること、文体を根拠に GGM 作としつつ、「帰属は見かけほど決定的ではない」とも述べる。本書13篇のなかで最も早く、独裁崩壊前の検閲下に出た記事。</dd>
+    <dt>その週</dt><dd>1月1日の空軍反乱が失敗した直後。1月10日と13日の内閣改造で秘密警察長官エストラーダと内相バジェニージャ・ランスが政権を去った。</dd>
+    <dt>後の作品</dt><dd>本文自身が「難破者の物語」に触れる。GGM は1955年に『ある遭難者の物語』の連載を書いたばかりだった。縄につながれて時間の感覚を失う男の像は、栗の木に縛られた『百年の孤独』のホセ・アルカディオ・ブエンディアを連想させるが、研究者の指摘は確認できていない（推測）。</dd>
+    <dt>読みどころ</dt><dd>政治の話題がひとつもない号で、「ありふれた一市民」の奇譚を書いた点。冒頭の一文に30年分を詰め込んでから本題の4年間に入る構成。</dd>
+    <dt>未確認</dt><dd>シフォンテスを捕らえた集団と場所。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a4">
+  <div class="head">
+    <div class="num">4</div>
+    <h3>潜伏からの帰還</h3>
+    <p class="orig">Kelly sale de la penumbra</p>
+    <div class="facts"><span class="tag mom">Momento</span><span class="tnum">1958年1月24日号 pp.24-26</span><span class="tag">署名記事（可能性が高い）</span><span class="pill c-ok">日付 確認</span><span class="pill c-hi">署名 高</span></div>
+  </div>
+  <blockquote class="es">Entre la multitud que se doraba al sol en la playa de Los Caracas, el domingo 19 de enero, nadie reconoció a Patricio Kelly…<span class="tr">1月19日の日曜日、ロス・カラカスの浜辺で日に焼けていた群衆のなかで、誰もパトリシオ・ケリーに気づかなかった……</span></blockquote>
+  <dl>
+    <dt>内容</dt><dd>独裁崩壊の4日前、海水浴場で泳ぎ、上等すぎる黒いアルパカの服で3時間踊っても誰にも気づかれなかった指名手配中の男から始め、チリでの脱獄劇へさかのぼる。引き渡し手続きが進むなか、銃殺の壁の前の「シベリア中庭」に移されかけたこと、脱獄後サンティアゴで3晩続けて外食し、司祭に変装して担当官の自宅を訪ねたこと、パナマ経由でカラカスに入ったことが語られる。結びはハンフリー・ボガートへのなぞらえ。</dd>
+    <dt>人物</dt><dd><b>ギジェルモ・パトリシオ・ケリー</b>（1921または22〜2005）。アルゼンチンのペロン派民族主義団体「民族主義解放同盟（ALN）」の指導者。1955年の政変後に投獄され、1957年3月18日にリオ・ガジェゴス刑務所からクックやカンポラらと集団脱獄してチリへ。送還直前の同年9月、サンティアゴの刑務所から女装して再び脱獄した。記事中の団体名「アルゼンチン革命同盟」は一般的な呼称と異なる。ケリー自身が後年の著書にこの記事を再録している。</dd>
+    <dt>その週</dt><dd>記事1と同じ号。独裁崩壊の翌日に出た。ペロン自身も1956年からカラカスに亡命中で、27日に出国する。</dd>
+    <dt>後の作品</dt><dd>ジラールは、見世物的な冒険の根に複数国にまたがる政治行動があると指摘する。変装・脱獄・追跡を時系列をずらして語る手法は、後のノンフィクションの再構成法と比べられる（推測）。</dd>
+    <dt>読みどころ</dt><dd>「誰も彼に気づかなかった」という否定文から人物を浮かび上がらせる書き出し。</dd>
+    <dt>未確認</dt><dd>1958年1月にケリーがカラカスで何をしていたか。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a5">
+  <div class="head">
+    <div class="num">5</div>
+    <h3>さよなら、ベネズエラ</h3>
+    <p class="orig">Adiós, Venezuela</p>
+    <div class="facts"><span class="tag mom">Momento</span><span class="tnum">1958年2月28日 N°85 pp.40-47</span><span class="tag">署名記事</span><span class="pill c-ok">確認</span></div>
+  </div>
+  <dl>
+    <dt>内容</dt><dd>独裁崩壊後の不況と失業のなか、ベネズエラを去っていく欧州系移民、とくにイタリア人を描く。汽笛が鳴る港で残る者に別れを告げ、移民たちは泣く。10年足らずの間にポルトガル人や1万6000人のドイツ人が入国し、1月23日時点でカラカスだけで7万人のイタリア人がいた。下宿は掛け売りをやめ、失業者には「もう掛けはきかない」としか返ってこない。本文はこれを「ベネズエラが10年間経験した社会劇の最終章であり、いまようやく自由に語れるようになったもの」と位置づける。</dd>
+    <dt>背景</dt><dd>ペレス・ヒメネス政権は欧州移民を優遇し、建設ブームで労働力を吸収した。イタリア生まれの住民は1950年の約4.4万人から1961年の約12.2万人へ増えた。独裁崩壊後には移民への反感も高まった。</dd>
+    <dt>その週</dt><dd>2月9日ベタンクール帰国。14日号に「迫害された者たちの世代」。23日、アルゼンチン大統領選でフロンディシが当選し、キューバでは7月26日運動がレーサーのファンジオを誘拐した。</dd>
+    <dt>後の作品</dt><dd>直接の関連は確認できていない。むしろ記事9とつながる「在ベネズエラ・イタリア人社会」ものとして読める（推測）。</dd>
+    <dt>読みどころ</dt><dd>民主化の祝祭の影にいる外国人労働者に目を向けた点。外国人記者だった筆者自身の立場と重ねて読める（推測）。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a6">
+  <div class="head">
+    <div class="num">6</div>
+    <h3>命の猶予は12時間</h3>
+    <p class="orig">Sólo doce horas para salvarlo</p>
+    <div class="facts"><span class="tag mom">Momento</span><span class="tnum">1958年3月14日 pp.29-32, 54</span><span class="tag">署名記事</span><span class="pill c-ok">確認</span></div>
+  </div>
+  <blockquote class="es">Había sido una mala tarde de sábado. El calor empezaba en Caracas.<span class="tr">ひどい土曜日の午後だった。カラカスに暑さが始まっていた。</span></blockquote>
+  <dl>
+    <dt>内容</dt><dd>出産を翌週に控えた女性が1歳半の長男を連れて散歩中、小さな飼い犬「トニー」が子どもの右頬を噛む。犬は狂犬病の疑いがあり、必要な抗狂犬病の高度免疫血清は国内にない。大学都市の衛生研究所、ニューヨーク、マイアミの病院、製薬会社の中南米担当医、マラカイボからの便と、互いに知らない人々の連鎖が12時間のうちに血清を空輸する。日曜朝6時30分、マイケティアに追加の1000単位が届く。</dd>
+    <dt>人物</dt><dd>ギジェン夫妻、衛生研究所のブリセーニョ・ロッシ医師、マンゲルス医師ら、市井の人々。有名人は登場しない。</dd>
+    <dt>その週</dt><dd>3月14日、米国がバティスタ政権への武器禁輸を決定。16日コロンビア議会選挙（GGM は21日号で報じた）。<b>3月21日、GGM はバランキージャでメルセデス・バルチャと結婚</b>。この記事を書き上げてからコロンビアへ向かったことになる。</dd>
+    <dt>後の作品</dt><dd>ジラールはこの記事を、この時期のルポの<b>形式上の頂点</b>と評する。「中だるみも休止もない厳密さ」があり、『大佐に手紙は来ない』と同じ物語の密度を持つ。「われわれは『12時間』の真実を、『大佐』の真実を信じるのと同じように、文学的技法の効果によって信じる」。1970年代の批評も「クロニカから最大限の強度を引き出し、本物の短篇に変える」例として挙げる。</dd>
+    <dt>読みどころ</dt><dd>政治と無関係な「日曜の小事件」で、独裁崩壊直後の街の連帯を描く。刻々と迫る期限と多数の人物を時刻で追うタイムリミット型の構成。</dd>
+    <dt>未確認</dt><dd>子どもの最終的な容体。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a7">
+  <div class="head">
+    <div class="num">7</div>
+    <h3>1958年6月6日、干上がったカラカス</h3>
+    <p class="orig">6 de junio de 1958: Caracas sin agua</p>
+    <div class="facts"><span class="tag mom">Momento</span><span class="tnum">1958年4月11日 pp.41-45</span><span class="tag">署名記事</span><span class="tag">架空ルポ</span><span class="pill c-ok">確認</span></div>
+  </div>
+  <blockquote class="es">Samuel Burkart, un ingeniero alemán que vivía solo en un pent-house de la avenida Caracas, en San Bernardino, fue al abasto de la esquina a comprar una botella de agua mineral para afeitarse. Era el 6 de junio de 1958.<span class="tr">サン・ベルナルディノのカラカス通りのペントハウスにひとりで住むドイツ人技師サムエル・ブルカルトは、髭を剃るためのミネラルウォーターを買いに角の店へ行った。1958年6月6日のことだった。</span></blockquote>
+  <dl>
+    <dt>内容</dt><dd>掲載日の約2か月先の6月6日を舞台に、断水した首都の1日を「すでに起きたこと」として報じる。ブルカルトは3月26日の「ラ・マリポサ貯水池の水は残り40日分」という記事を読んで早めに備えていた。水道公社 INOS は節水を呼びかけ、気象学者は6月まで雨は降らないと言い、住宅地の給水は1日1時間に制限され、石油会社のタンク車300台が水を運ぶ。4月にまだ庭に水をまいていた隣人の女性に、ブルカルトは「あなたのような人のせいだ」と言い返す。</dd>
+    <dt>事実と虚構</dt><dd>ラ・マリポサ貯水池も INOS も実在し、1958年に給水制限があったと記す資料もあるが、実際の渇水の規模は未確認。ブルカルトは架空の人物とみられる（ジラールが記事全体を架空ルポと規定しているため）。本文には「明日にわか雨が降れば、このルポは嘘をついたことになる」という一文がある。<b>書名の「6月6日」は発表日ではなく、記事が想定した未来の日付</b>。ダニエル・サンペル・ピサノは「クロニカというより短篇」と評した。</dd>
+    <dt>その週</dt><dd>4月9日、キューバで反バティスタのゼネストが失敗。翌週18日号で GGM は、カラカス滞在中のフィデル・カストロの妹エマへのインタビュー「わが兄フィデル」を書いた（本書未収録）。</dd>
+    <dt>後の作品</dt><dd>ジラールは「政治のなさそうなところにまで政治を入れた」例とし、「実際の、あるいは十分予見できる基盤から出発し、想像力の介入を伴いながら、うまく語ることに基づく」と評する。ジャーナリズムと虚構の境界をめぐる後年の GGM の発言の、早い時期の実践例とみなせる（推測。GGM 自身がこの記事に言及した発言は未確認）。</dd>
+    <dt>読みどころ</dt><dd>日付を題名に置いて未来を報じる大胆さ。ひとりの外国人技師の1日に都市全体の危機を収める視点の設計。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a8">
+  <div class="head">
+    <div class="num">8</div>
+    <h3>セネガルの譲渡</h3>
+    <p class="orig">Senegal cambia de dueño</p>
+    <div class="facts"><span class="tag mom">Momento</span><span class="tnum">1958年5月2日 pp.30-35</span><span class="tag">署名記事</span><span class="pill c-ok">確認</span></div>
+  </div>
+  <blockquote class="es">¡Y aquí tenemos a Senegal! El anuncio hubiera sido mucho más espectacular si realmente Senegal hubiera estado allí, en aquella sala de 50 metros cuadrados…<span class="tr">さあ、セネガルのご登場！ この口上は、セネガルが本当にそこに、あの50平方メートルの部屋にいたなら、はるかに見栄えがしただろう……</span></blockquote>
+  <dl>
+    <dt>内容</dt><dd><b>セネガルは競走馬の名前</b>。独裁者の名義人フォルトゥナート・エレーラ名義の厩舎「スタッド・カニャベラル」が没収され、所有馬が3日間の競売にかけられる。金曜10時45分にセネガルが売りに出され、新しいシンジケート「スタッド・ベネズエラ」（黄色の勝負服、代表エンリケ・スクレ・ベガ）が落札。競売全体の売上は34万3000ボリバル。アルゼンチンから空輸されたこの馬は3200mの記録を211秒から207秒へ縮めたが、通常は5分の1秒しか縮まらないため「大量のアルカロイドで助けられていたのでは」という疑惑があった。「ドーピングされた馬は病気の馬である」。</dd>
+    <dt>人物・事件</dt><dd>スタッド・カニャベラルはペレス・ヒメネスの財産とみなされた厩舎で、パラディン、セネガル、ステロペなどの名馬を持っていた。エレーラは独裁崩壊後に出国を余儀なくされた。</dd>
+    <dt>その週</dt><dd>5月1日フロンディシがアルゼンチン大統領に就任。4日コロンビア大統領選でジェラス・カマルゴが当選し、GGM は9日号に人物素描「ジェラス」を書いた。</dd>
+    <dt>後の作品</dt><dd>研究者ハンス＝オットー・ディルは、「独裁の馬は決して負けなかった」というこの記事の一句が、<b>『族長の秋』で族長が必ず当たる国営宝くじ</b>の定式に変わったと指摘し、ジラールの序文も族長と国営宝くじとの関連に触れる。ジラール自身はジャーナリズムとしては「最も重要度の低いもののひとつ」と見るが、別の研究書は記事9とともに「ジャーナリズムがどこで終わり文学がどこで始まるか判別できない大クロニカ」と評価する。</dd>
+    <dt>読みどころ</dt><dd>不在の主役から始まる書き出し。競売という一場面を通して独裁の私物化と不正を描く、間接的な告発の方法。</dd>
+    <dt>未確認</dt><dd>セネガルの正確な落札額。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a9">
+  <div class="head">
+    <div class="num">9</div>
+    <h3>7人のシチリア人の死――この目がその真相を追う</h3>
+    <p class="orig">Estos ojos vieron 7 sicilianos muertos</p>
+    <div class="facts"><span class="tag mom">Momento</span><span class="tnum">1958年5月16日 pp.36-39</span><span class="tag">署名記事</span><span class="tag">Momento 最後の署名記事</span><span class="pill c-ok">確認</span></div>
+  </div>
+  <blockquote class="es">En la estrecha y revuelta oficina que en ese tiempo servía de redacción, gerencia y administración a La Voce d'Italia, uno de los periódicos en italiano que se editan en Caracas…<span class="tr">当時、カラカスで出ているイタリア語新聞のひとつ『ラ・ヴォーチェ・ディタリア』の編集部と経営と総務を兼ねていた、狭くて散らかった事務所で……</span></blockquote>
+  <dl>
+    <dt>内容</dt><dd>イタリア語紙の編集長<b>ガエタノ・バフィーレ</b>が独自に調べた事件の再構成。1955年、下宿「ペンシオン・リバネサ」に住むフェランテッリ、ピアッツァ姓の2人、ラ・ポルタらシチリア出身の移民7人が、独裁者暗殺計画の容疑で姿を消した。発端は手続き代行業を営むイタリア人女性アダ・ディ・トンマーゾと、秘密警察の人間だったその夫アポリナリオ。フェランテッリが「自分も秘密警察に入れないか」と頼んだ縁から「陰謀」がでっち上げられ、1万ボリバルでエストラーダに売られたというのがバフィーレの結論。2月25日の夜、下宿の戸口で「暗殺計画」は永遠に清算され、5日後には7人の痕跡は何も残っていなかった。1958年、ディ・トンマーゾは尋問後に記者に容疑を否定し、24時間後に姿を消した。</dd>
+    <dt>人物・事件</dt><dd>バフィーレは後年の回想録でこの事件と GGM の記事に触れている。1952年の農民虐殺「トゥレン事件」とは別件。</dd>
+    <dt>その週</dt><dd><b>5月13日、ニクソン米副大統領の車列がカラカスで襲われた</b>。社主ラミレス・マクグレゴルは事件を遺憾とする短い声明「Lo sucedido…」を書き、次号に載せるよう求めた。プリニオと GGM はこれを社説ではなく社主の署名入りで載せ、社主が編集長プリニオを叱責、プリニオは辞職し GGM も続いた。<b>この記事は同じ5月16日号に載った、GGM が Momento に書いた最後の署名記事</b>。同じ13日、アルジェの蜂起からド・ゴール復帰への流れが始まった。</dd>
+    <dt>後の作品</dt><dd>ジラールは「少なくとも外国人に許される範囲での闘うジャーナリズム」とし、人権、それも個人の権利の擁護がこの時期の活動を特徴づけ始めたと評する。他人の調査を再構成し、証言から事件を復元する手法は『予告された殺人の記録』や『誘拐の知らせ』に連なる（推測）。</dd>
+    <dt>読みどころ</dt><dd>独裁崩壊後に初めて語れるようになった「消された人々」の事件を、ある編集室の場面から始める構成。題名の「この目」が誰の目かという仕掛け。</dd>
+    <dt>未確認</dt><dd>7人全員の氏名と失踪の年月日（1955年2月25日説）。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a10">
+  <div class="head">
+    <div class="num">10</div>
+    <h3>貧困のなかの楽園――ゼロの生活レベル</h3>
+    <p class="orig">Nivel de vida: cero</p>
+    <div class="facts"><span class="tag vg">Venezuela Gráfica</span><span class="tnum">1958年7月25日 pp.8-9</span><span class="tag">署名 G.G.M.</span><span class="pill c-ok">確認</span></div>
+  </div>
+  <blockquote class="es">A un lado de la vieja carretera de La Guaira, en la depresión de Ojo de Agua, donde los camiones del aseo público vuelcan la basura de Caracas, empieza a nacer un pueblo.<span class="tr">旧ラ・グアイラ街道の脇、清掃局のトラックがカラカスのごみを捨てるオホ・デ・アグアの窪地に、ひとつの村が生まれつつある。</span></blockquote>
+  <dl>
+    <dt>内容</dt><dd>3km先から悪臭が漂い、蠅が飛び交うごみ捨て場に生まれた「ベネズエラで一番小さく、一番悲しく、一番劇的な村」。まだ名前がなく、ごみ捨て場の材料で建てた11軒の小屋からなる。ある日やって来た「太って健康で目端のきく男」が、ごみを漁る人々に「ぼろを集めろ、1キロ3センティモで買う」と言った。ラ・グアイラのバラックで30年を過ごしたハシント・グティエレスは、やがて臭いも蠅の羽音も感じなくなり、妻と14歳の息子を呼び寄せた。</dd>
+    <dt>背景</dt><dd>カラカスへの人口流入とランチョ（スラムの掘っ立て小屋）の増加。1958年1月時点でカラカスに約4万のランチョがあったという記述がある（根拠1点）。題の「楽園」は反語と読める（推測）。</dd>
+    <dt>媒体</dt><dd>6月27日からカプリレス系の大衆誌 Venezuela Gráfica の編集長。ジラールは「ここにはごくわずかしか書かず、署名入りは2本だけ」と記し、それがこの記事と記事13。見開き2ページの短いルポ。</dd>
+    <dt>その週</dt><dd>7月14日イラク革命、15日米海兵隊がレバノン上陸。国内では7月22〜24日のカストロ・レオン危機（記事11）。</dd>
+    <dt>後の作品</dt><dd>ごみ捨て場と悪臭と蠅の村は『族長の秋』や『百年の孤独』の腐敗とごみと蠅のイメージ群と響き合うが、研究者の明示的な指摘は見つかっていない（推測）。</dd>
+    <dt>読みどころ</dt><dd>民主化の政治報道が過熱するなか、統計上の「生活水準ゼロ」をひとりの住民の生活に置き換えた点。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a11">
+  <div class="head">
+    <div class="num">11</div>
+    <h3>内なる陰謀――ベネズエラを揺さぶった72時間</h3>
+    <p class="orig">72 horas que conmovieron a Venezuela</p>
+    <div class="facts"><span class="tag vg">Venezuela Gráfica</span><span class="tnum">1958年8月1日</span><span class="tag">無署名</span><span class="pill c-ok">日付 確認</span><span class="pill c-guess">帰属 推定</span></div>
+  </div>
+  <blockquote class="es">…la señal de partida, dada desde la torre de control, tuvo, por segunda vez en seis meses, un enorme valor histórico. El 23 de enero, esa señal puso término a diez años de dictadura. El 24 de julio, puso término a setenta y dos horas que…<span class="tr">……管制塔から出された離陸の合図は、半年のうちに2度目の、途方もない歴史的な意味を持った。1月23日、その合図は10年の独裁に終止符を打った。7月24日には、72時間に終止符を打った……</span></blockquote>
+  <dl>
+    <dt>内容</dt><dd>国防相カストロ・レオン将軍の反乱と出国を、1月23日の独裁者の逃亡機と対にして描く。2022年のベネズエラ版では「内なる陰謀」の副題が付く。本文の細部は今回の調査では確認できていない。</dd>
+    <dt>人物・事件</dt><dd><b>ヘスス・マリア・カストロ・レオン</b>将軍は1月23日の評議会発足時から国防相（7月5日就任とする資料もある）。7月22〜23日に将校らの署名入り要求を評議会に突きつけた。他の軍人の支持とラレサバルを支持する民衆のデモで秩序は保たれ、24日に国外へ去った（辞任の日付は22日とも24日とも）。1960年にはコロンビアからタチラ州に侵攻して失敗する。</dd>
+    <dt>帰属</dt><dd>ジラールは記事11と12を「Venezuela Gráfica に載った、GGM に帰属しうる無署名の2篇」として付録に収めた。2022年版の序文も「暫定的に帰属」としている。<b>GGM の作と断定はできない</b>。題名はジョン・リード『世界を揺るがした十日間』のもじりと考えられる（推測）。</dd>
+    <dt>その週</dt><dd>イラク革命とレバノン危機の直後。国内では各党が統一候補をめぐって協議していた。</dd>
+    <dt>読みどころ</dt><dd>半年前の1月23日と対にした構成で、民主化の脆さを示した点。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a12">
+  <div class="head">
+    <div class="num">12</div>
+    <h3>政党が争うなかで、議長はのらりくらり</h3>
+    <p class="orig">Mientras los partidos deciden, Larrazábal deshoja margaritas</p>
+    <div class="facts"><span class="tag vg">Venezuela Gráfica</span><span class="tnum">1958年8月8日</span><span class="tag">無署名</span><span class="pill c-ok">日付 確認</span><span class="pill c-guess">帰属 推定</span></div>
+  </div>
+  <blockquote class="es">El 23 de enero, a la una y media de la madrugada, la esposa y los hijos del contralmirante Wolfgang Larrazábal oyeron decir que el presidente del nuevo Gobierno era «el contralmirante Larrazábal»…<span class="tr">1月23日午前1時半、ウォルフガング・ラレサバル海軍少将の妻と子どもたちは、新政府の議長が「ラレサバル少将」だと告げられるのを聞いた……</span></blockquote>
+  <dl>
+    <dt>内容</dt><dd>家族さえアナウンサーの言い間違いかと疑った無名の軍人が、国を率いて3時間後には「人気競争」に勝っていた。「民衆に発砲を命じるくらいなら辞任する」と言い、実際に数日間カラカスを警察なしで放置した。テレビと写真で「目から入った」人気。女子高生が制服にサインをせがむ。ニクソン訪問の前夜に「学生ならきっと『ニクソン打倒』と叫ぶだろう」と答え、24時間後に言い直す。結びは「今度は誰もアナウンサーの言い間違いだとは思うまい」。題の「マーガレットの花びらをむしる」は、花占いのように決めかねることを言う慣用句。</dd>
+    <dt>人物・事件</dt><dd><b>ウォルフガング・ラレサバル</b>（1911〜2003）。この時点で各党は統一候補を探していた。結局 URD と共産党に推されて出馬し、11月に議長を辞任、12月7日の選挙でベタンクールに敗れた。</dd>
+    <dt>帰属</dt><dd>記事11と同じく無署名で、GGM 作は推定。旧版（1995年文庫）ではこの記事を「続七十二時間」として扱っていた。</dd>
+    <dt>その週</dt><dd>8月7日、隣国コロンビアでジェラス・カマルゴが大統領に就任。23日には台湾海峡危機（金門砲撃）が始まる。</dd>
+    <dt>後の作品</dt><dd>テレビ映りと大衆的人気で権力者が作られていく観察は、『族長の秋』の権力とイメージの主題と比べられる（推測）。</dd>
+    <dt>読みどころ</dt><dd>「言い間違いと思われた就任」と「もう誰も言い間違いとは思わない立候補」で円環を閉じる構成。軽い筆致の肖像に、軍人の人気政治への警戒がにじむ。</dd>
+  </dl>
+</article>
+
+<article class="art" id="a13">
+  <div class="head">
+    <div class="num">13</div>
+    <h3>ベネズエラは犠牲を払うに値する</h3>
+    <p class="orig">Venezuela bien vale un sacrificio</p>
+    <div class="facts"><span class="tag vg">Venezuela Gráfica</span><span class="tnum">1958年8月15日 pp.10-11</span><span class="tag">署名 G.G.M.</span><span class="pill c-ok">確認</span></div>
+  </div>
+  <dl>
+    <dt>内容</dt><dd>記者とひとりの商人の対話の形をとる短文。商人は「外国からの借款で国を縛る代わりに、ベネズエラの商人たちで募金をすればいい。ベネズエラは犠牲を払うに値する」と言い、1万ボリバルの小切手を「国民借款のための委員会」宛てに編集部へ届ける。記者は政府が交渉中の対外借款（最大3億ドル）から計算して「不可能だ」と反論しつつ、「事業主15万487人が1万ボリバルずつ出せば」と試算を続け、募金運動の組織化を待つ形で終わる。商人は12年前に来た帰化ベネズエラ人。</dd>
+    <dt>背景</dt><dd>1958年の暫定政府の財政難と対外借款交渉。題名は「パリはミサに値する」（アンリ4世の言葉とされる）のもじりと考えられる（推測）。</dd>
+    <dt>その週</dt><dd>記事12と同じ週。9月7日には軍警察系のクーデター未遂が起きる。GGM の Venezuela Gráfica での署名記事はこれが最後で、以後はキューバ革命の勝利（1959年1月）へと関心が向かう。</dd>
+    <dt>読みどころ</dt><dd>対話と算術でつくった異色の短文。愛国的な美談に記者が数字で水を差しながら、最後は運動への参加を呼びかける両義的な文章。</dd>
+    <dt>未確認</dt><dd>実際に募金運動が組織されたかどうか、その規模。</dd>
+  </dl>
+</article>
+
+<div class="stack" style="margin-top:.6rem">
+  <h3>本書に入っていない同時期の主な記事</h3>
+  <p class="small muted">「ほかにもこんな記事がある」と分かるように。日付はジラール版の年表による。</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>日付</th><th>媒体</th><th>題名</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td class="d">1958-01-03</td><td>Momento</td><td class="es">El año más famoso del mundo</td><td>1957年の世界回顧。「1957年は1月1日ではなく、9日水曜の夕方6時にロンドンで始まった」（イーデン英首相の辞任）から始まる</td></tr>
+      <tr><td class="d">1958-02-14</td><td>Momento</td><td class="es">La generación de los perseguidos</td><td>帰国したベタンクール、カルデラ、ビジャルバ、マチャードの4人の群像</td></tr>
+      <tr><td class="d">1958-03-21</td><td>Momento</td><td class="es">Colombia: al fin hablan los votos</td><td>3月16日のコロンビア議会選挙と国民戦線体制</td></tr>
+      <tr><td class="d">1958-04-18</td><td>Momento</td><td class="es">Mi hermano Fidel</td><td>カラカス滞在中のフィデル・カストロの妹エマへのインタビュー</td></tr>
+      <tr><td class="d">1958-04-25</td><td>Momento</td><td class="es">Condenados a 20 años, pero son inocentes</td><td>1952年のタクシー運転手殺害事件で、秘密警察の工作により無実の被告が20年の刑を受けた冤罪</td></tr>
+      <tr><td class="d">1958-05-09</td><td>Momento</td><td class="es">Lleras</td><td>当選したコロンビア大統領ジェラス・カマルゴの人物素描</td></tr>
+      <tr><td class="d">1958-06</td><td>Élite（Momento とする資料も）</td><td class="es">Nagy: ¿héroe o traidor?</td><td>6月に処刑されたハンガリー元首相ナジ・イムレについて。ジラールは「重要な記事」と呼ぶ</td></tr>
+    </tbody>
+  </table></div>
+</div>
+</div>
+</section>
+
+<!-- ============ 7. 人物 ============ -->
+<section class="sec" id="people">
+<header>
+  <p class="eyebrow">7 · Personajes</p>
+  <h2>人物</h2>
+</header>
+<div class="people">
+  <div class="person"><span class="role">著者</span><b>ガブリエル・ガルシア＝マルケス</b><span class="small">1927年アラカタカ生まれ。1958年当時30歳、Momento 誌の編集委員。1月に独裁崩壊を取材し、3月に結婚、5月に辞職、6月末から Venezuela Gráfica 編集長。1959年にハバナ、ボゴタへ。</span></div>
+  <div class="person"><span class="role">友人・上司</span><b>プリニオ・アプレヨ・メンドサ</b><span class="small">コロンビアの作家・記者（生年は1931年または1932年、2026年7月没）。Momento の編集長として GGM を呼び寄せ、1958年1月24日号の社説とルポを共作。ニクソン事件で辞職し Élite へ。後に対話集『グアバの香り』（1982）を編む。</span></div>
+  <div class="person"><span class="role">妻</span><b>メルセデス・バルチャ</b><span class="small">1958年3月21日、バランキージャで GGM と結婚。カラカスのサン・ベルナルディノ地区、Edificio Roraima の家具のほとんどないアパートで新婚生活を始めた。</span></div>
+  <div class="person"><span class="role">社主</span><b>カルロス・ラミレス・マクグレゴル</b><span class="small">Momento の社主（1903〜75）。マラカイボの日刊紙 Panorama の社長。1955年から国外にいた。社員のあだ名は「el loco」。ニクソン事件の声明をめぐりプリニオと衝突した。</span></div>
+  <div class="person"><span class="role">独裁者</span><b>マルコス・ペレス・ヒメネス</b><span class="small">陸軍軍人（1914〜2001）。1952年末から権力を握り、1958年1月23日未明に専用機でドミニカへ逃亡。のち米国へ移り、1963年に送還されて裁判にかけられた。</span></div>
+  <div class="person"><span class="role">秘密警察</span><b>ペドロ・エストラーダ</b><span class="small">Seguridad Nacional 長官。弾圧の象徴的人物。1958年1月の内閣改造で解任され出国。記事2と9に登場する。</span></div>
+  <div class="person"><span class="role">内相</span><b>ラウレアノ・バジェニージャ・ランス</b><span class="small">独裁政権の内相。1957年5月に大司教を呼びつけ、8月に筆名で教会に反論。1958年1月に解任。</span></div>
+  <div class="person"><span class="role">評議会議長</span><b>ウォルフガング・ラレサバル</b><span class="small">海軍少将（1911〜2003）。1958年1月23日から軍事評議会議長。民衆の人気を集め、11月に辞任して大統領選に出馬、12月7日に2位。記事12の主役。</span></div>
+  <div class="person"><span class="role">大司教</span><b>ラファエル・アリアス・ブランコ</b><span class="small">カラカス大司教。1957年5月1日の司教書簡で労働者の貧困を告発し、教会と独裁の対立の起点をつくった。記事2の中心人物。</span></div>
+  <div class="person"><span class="role">反乱の将軍</span><b>ヘスス・マリア・カストロ・レオン</b><span class="small">1958年1月からの暫定政府の国防相。7月22〜23日に評議会へ要求を突きつけて失敗し、24日に出国。1960年にタチラ州へ侵攻して失敗。記事11の主役。</span></div>
+  <div class="person"><span class="role">政党指導者</span><b>ロムロ・ベタンクール</b><span class="small">民主行動党（AD）の指導者。1958年2月9日に亡命から帰国し、12月の選挙で当選、1959年2月13日に大統領就任。</span></div>
+  <div class="person"><span class="role">脱獄者</span><b>パトリシオ・ケリー</b><span class="small">アルゼンチンのペロン派民族主義団体の指導者（生年は1921年または1922年、2005年没）。1957年にリオ・ガジェゴスとサンティアゴの刑務所から二度脱獄し、カラカスに潜伏。記事4の主役。</span></div>
+  <div class="person"><span class="role">イタリア語紙編集長</span><b>ガエタノ・バフィーレ</b><span class="small">カラカスのイタリア語紙 La Voce d'Italia の編集長。7人のシチリア人失踪事件を独自に調査し、記事9の材料を提供した。</span></div>
+  <div class="person"><span class="role">編者</span><b>ジャック・ジラール</b><span class="small">フランスの研究者。GGM のジャーナリズム作品を発掘・編纂し、『Obra periodística』（1981〜84）に序文と注を付けた。本書の底本の編者で、無署名記事の帰属判断もジラールによる。</span></div>
+</div>
+</section>
+
+<!-- ============ 8. 用語 ============ -->
+<section class="sec" id="glossary">
+<header>
+  <p class="eyebrow">8 · Glosario</p>
+  <h2>用語</h2>
+</header>
+<dl class="gloss">
+  <dt>Seguridad Nacional（SN）</dt><dd>ペレス・ヒメネス政権の秘密警察。長官ペドロ・エストラーダ。反対派の拘束・拷問・失踪に関わり、1958年1月23日に群衆が本部を襲った。</dd>
+  <dt>Junta Patriótica（愛国評議会）</dt><dd>1957年6月に各党の地下組織が結成した統一組織。議長は URD の記者ファブリシオ・オヘダ。1958年1月のゼネストを呼びかけた。</dd>
+  <dt>Junta de Gobierno（軍事評議会）</dt><dd>1958年1月23日に発足した暫定政府。議長ラレサバル。24日に軍人2名が外れ実業家2名が加わった。11月からはエドガル・サナブリアが議長。</dd>
+  <dt>AD／COPEI／URD／PCV</dt><dd>民主行動党（ベタンクール）、キリスト教社会党（カルデラ）、民主共和同盟（ビジャルバ）、ベネズエラ共産党。前3党が1958年10月31日のプント・フィホ協定を結び、共産党は除外された。</dd>
+  <dt>plebiscito（国民投票）</dt><dd>1957年12月15日、ペレス・ヒメネスの任期延長を問うた投票。不正と広くみなされ、崩壊の引き金のひとつになった。</dd>
+  <dt>23 de Enero</dt><dd>独裁崩壊の日付であり、記念して改名された首都西部の巨大団地（旧「2 de Diciembre」）の名でもある。記事1に警官の発砲の舞台として登場する。</dd>
+  <dt>La Vaca Sagrada（聖なる牛）</dt><dd>ペレス・ヒメネスの大統領専用機のあだ名。1月23日未明にラ・カルロタ空港からドミニカ共和国のシウダー・トルヒージョ（現サント・ドミンゴ）へ飛んだ。</dd>
+  <dt>Guasina（グアシナ）</dt><dd>オリノコ・デルタの小島に置かれた政治犯収容所。酷暑・毒蛇・強制労働で知られ、1950年代半ばに閉鎖されたとされる。</dd>
+  <dt>rancho（ランチョ）</dt><dd>丘の斜面やごみ捨て場に建てられた自家建築のスラム住居。記事10の舞台。</dd>
+  <dt>INOS</dt><dd>国立衛生事業公社（Instituto Nacional de Obras Sanitarias）。水道を所管し、記事7で節水と給水制限を呼びかける。</dd>
+  <dt>La Mariposa（ラ・マリポサ貯水池）</dt><dd>1949年運用開始のカラカスの主要水源。記事7で「残り40日分」と報じられる。</dd>
+  <dt>Stud Cañaveral</dt><dd>独裁者の名義人フォルトゥナート・エレーラ名義の厩舎。没収後の競売が記事8の舞台。</dd>
+  <dt>La Voce d'Italia</dt><dd>カラカスで発行されていたイタリア語新聞。編集長バフィーレの調査が記事9の土台。</dd>
+  <dt>Momento</dt><dd>カラカスの週刊誌。1958年2月7日号が N°82。社主ラミレス・マクグレゴル、編集長プリニオ、編集委員に GGM、ルイス・エレーラ・カンピンス（後の大統領）ら。</dd>
+  <dt>Venezuela Gráfica</dt><dd>ミゲル・アンヘル・カプリレスのメディア・グループの大衆誌。GGM は1958年6月27日から1959年5月1日まで編集長を務めた。</dd>
+  <dt>Gastón Galdós（ガストン・ガルドス）</dt><dd>1958年1〜5月の Momento に現れる筆名。ジラールが GGM に帰属させた。記事3の署名。</dd>
+  <dt>Obra periodística</dt><dd>ジラール編の GGM ジャーナリズム作品集。ブルゲラ版（1981〜83）は4巻、オベハ・ネグラ版（1984）は6巻。図書館の書誌注記から、本書の底本は後者の第6巻「De Europa y América II」と考えられる。</dd>
+  <dt>Operación Verdad（真実作戦）</dt><dd>1959年1月、キューバ革命政府が外国記者を招いて旧政権の裁判を公開した催し。GGM とプリニオは1月18日夜にカラカスを発って参加した。</dd>
+  <dt>Prensa Latina</dt><dd>キューバ革命政府の通信社。GGM は1959年5月からボゴタ支局、1961年にニューヨーク支局で働き、同年春に辞職した。</dd>
+</dl>
+</section>
+
+<!-- ============ 9. 出典 ============ -->
+<section class="sec" id="sources">
+<header>
+  <p class="eyebrow">9 · Fuentes</p>
+  <h2>確度と出典</h2>
+  <p class="lede">このページは2026年10月19日に、ウェブで参照できる書誌・伝記・再掲記事を突き合わせて作りました。紙の原典で未確認の事項は、そのまま未確認と書いています。</p>
+</header>
+<div class="stack">
+  <div class="grid2">
+    <div class="note small"><b>確度の付け方</b><br><span class="pill c-ok">確認</span> 雑誌の号数・頁や一次資料に近い書誌で裏づけたもの。<br><span class="pill c-hi">高</span> 独立した複数の二次資料が一致するもの。<br><span class="pill c-mid">中</span> 根拠が1点、または内容からの同定。<br><span class="pill c-guess">推測</span> 編者・研究者・このページの作成者による推定。<br>記事の「読みどころ」は作成者の評価で、事実ではありません。</div>
+    <div class="note rojo small"><b>紙の原典で未確認の主な事項</b><br>・ちくま文庫新版（2026）の注と新しい解説の執筆者<br>・ジラール版の注記（Google Books の断片で参照）と頁数<br>・秘密警察による Momento 編集部急襲の正確な日付<br>・Momento 辞職の正確な日付（5月13日当日とするのは Centro Gabo のみ）<br>・『ある遭難者の物語』連載の開始・終了日<br>・グアシナ島の正確な位置<br>・記事11・12の本文細部と、2022年版が示す号数（N°353／358）との食い違い</div>
+  </div>
+  <details>
+    <summary>主な情報源（書誌・伝記）</summary>
+    <div class="src"><ol>
+      <li>Gabriel García Márquez, <i>Obra periodística 4: De Europa y América (1955-1960)</i>, ed. Jacques Gilard, Bruguera 1983 ほか各版。オベハ・ネグラ版（1984）は6巻本で第5〜6巻。Google Books の断片（ID: 3DIfAQAAIAAJ, xPMQAQAAMAAJ, jzMfAQAAIAAJ, t5pdAAAAMAAJ）。</li>
+      <li>同書イタリア語訳 <i>Dall'Europa e dall'America</i>, Mondadori 2010（Google Books ID wbjrw3JrNdYC、部分プレビュー）。ジラールの序文・年表・付録 I〜III。記事の引用の一部はこの伊訳からの重訳。</li>
+      <li>G. García Márquez, <i>Cuando era feliz e indocumentado</i>, Caracas: Ediciones El Ojo del Camello, 1973（序文 Manuel Caballero）。Plaza &amp; Janés 1974〜79。書誌は Jacques Gilard の書評（<i>Caravelle</i> 21, 1973, <a href="https://www.persee.fr/doc/carav_0008-0152_1973_num_21_1_1921_t1_0172_0000_2">Persée</a>）とSciELO Venezuela 2016 の論文。</li>
+      <li><i>Fuentes para el estudio del 23 de enero de 1958</i>（1983）の雑誌目録（Momento の号数・頁）。</li>
+      <li>Gerald Martin, <i>Gabriel García Márquez: A Life</i>（2008）、同 <i>The Cambridge Introduction to Gabriel García Márquez</i>（2012）。</li>
+      <li>Plinio Apuleyo Mendoza / G. García Márquez, <i>El olor de la guayaba</i>（1982）、章「El otoño del patriarca」。</li>
+      <li>Pedro Sorela, <i>El otro García Márquez: los años difíciles</i>（1988）。</li>
+      <li>Gaetano Bafile, <i>Rojo y negro</i>（2004）、Giuseppe Domingo, <i>Italianos en la política venezolana</i>（1993）。記事9の事件。</li>
+      <li>Hans-Otto Dill, <i>Dante criollo</i>（2006）ほか、記事8と『族長の秋』の関連。</li>
+      <li>Centro Gabo 年譜（<a href="https://centrogabo.org/cronologia/el-coronel-no-tiene-quien-le-escriba">centrogabo.org</a>）、Banco de la República 百科「Gabriel García Márquez」、Fundación Gabo「La mancha de una gota de ficción」。</li>
+      <li>筑摩書房 商品ページ（<a href="https://www.chikumashobo.co.jp/product/9784480441072/">新版</a>・<a href="https://www.chikumashobo.co.jp/product/9784480030238/">1995年版</a>）、CiNii Books BN06058224、一橋大学 OPAC、openBD。</li>
+      <li>El Nacional（Tulio Hernández 2024年1月28日、Papel Literario 2021年5月、2023年9月）、El Universal México（Vicente Alfonso 2026年1月18日）、Últimas Noticias 2022年11月9日（『Reportajes en Venezuela』紹介）、El Heraldo（バランキージャ）2018年3月23日「La boda de 1958」。</li>
+      <li>ベネズエラ政治史：es/en.wikipedia（1958年クーデター、Pacto de Puntofijo、1958年大統領選、Castro León、Nixon 車列襲撃ほか）、Aporrea、Britannica、SIC 誌（司教書簡）。1958年9月の蜂起に関する英語版 Wikipedia 記事は削除審議中との注記があり、死傷者数は採用していない。</li>
+      <li>コロンビア政治史：en.wikipedia「Colombian Military Junta」「National Front (Colombia)」。</li>
+      <li>移民統計：Boletín de la Academia Nacional de la Historia（イタリア生まれ住民の国勢調査値）。</li>
+    </ol></div>
+  </details>
+  <details>
+    <summary>資料間で食い違う点（両論併記）</summary>
+    <div class="src"><ul style="margin:0;padding-left:1.2em">
+      <li>GGM のカラカス到着：1957年12月23日（Martin、Centro Gabo、Gilard）／12月28日（El Nacional 2021）。</li>
+      <li>結婚の日付：1958年3月21日（Martin、El Heraldo、El Tiempo ほか）／3月27日（Centro Gabo のみ）。</li>
+      <li>『族長の秋』着想の場面：場所はミラフローレスの控えの間（『グアバの香り』）／パラシオ・ブランコ（Martin）。時期は独裁者出国の「3日後」（Martin）。</li>
+      <li>1月23日の逃亡機の時刻：午前2時（『グアバの香り』）／3時08分（記事1本文）／3時ごろ（Martin）。</li>
+      <li>記事1の執筆日：社説本文は「23日の夜明け」、ジラールの注は「24日の夜明け」と読める。</li>
+      <li>Momento 辞職：5月13日当日（Centro Gabo）／5月16日号の声明の後（Gilard、Martin）。</li>
+      <li>El Independiente 創刊：1956年2月15日（Martin）／2月20日（El Espectador）。</li>
+      <li>メキシコ到着：1961年6月下旬（Martin）／7月2日（El Universal カルタヘナ）。</li>
+      <li>Prensa Latina 創立：1959年3月業務開始／6月16日正式創立。</li>
+      <li>記事11・12の号数：N°353・N°358（2022年版紹介記事）は週刊誌の1週間差（8月1日・8日）と合わない。</li>
+    </ul></div>
+  </details>
+</div>
+</section>
+
+<footer>『幸福な無名時代』読書ガイド。個人の読書用の予備資料。引用した原文の著作権は著者と各媒体に帰属します。</footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var NS='http://www.w3.org/2000/svg';
+  function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs){e.setAttribute(k,attrs[k]);}if(parent)parent.appendChild(e);return e;}
+  function text(parent,x,y,str,attrs){var t=el('text',Object.assign({x:x,y:y,'font-size':12,'font-family':'Noto Sans JP, sans-serif',fill:'currentColor'},attrs||{}),parent);t.textContent=str;return t;}
+
+  /* ---------- Map ---------- */
+  var VENEZUELA=[[-71.3,11.85],[-71.6,11.1],[-71.6,10.95],[-71.3,10.95],[-70.8,11.35],[-70.2,11.6],[-70.05,12.2],[-69.8,12.1],[-69.6,11.5],[-69.75,11.4],[-68.9,10.95],[-68.3,10.8],[-68.0,10.5],[-67.5,10.5],[-66.9,10.62],[-66.0,10.62],[-65.3,10.2],[-64.7,10.1],[-64.2,10.45],[-63.7,10.65],[-62.0,10.72],[-62.4,10.1],[-62.6,9.9],[-61.4,9.6],[-61.0,9.1],[-60.5,8.5],[-60.0,8.3],[-60.7,7.5],[-60.3,6.9],[-61.4,5.9],[-60.7,5.2],[-62.0,4.0],[-63.5,3.9],[-64.0,2.5],[-64.0,0.7],[-65.5,0.9],[-66.9,1.2],[-67.1,1.9],[-67.8,2.1],[-67.4,2.1],[-67.6,3.5],[-67.8,4.5],[-67.6,6.2],[-69.3,6.1],[-70.0,6.9],[-71.0,7.0],[-72.0,7.3],[-72.4,7.5],[-72.5,8.3],[-73.0,9.0],[-73.3,9.3],[-72.9,10.4],[-72.3,11.1],[-71.3,11.85]];
+  var COLOMBIA=[[-77.4,8.7],[-76.9,8.1],[-76.7,7.9],[-76.9,8.5],[-76.3,9.0],[-75.9,9.4],[-75.6,9.9],[-75.5,10.4],[-75.2,10.8],[-74.85,11.1],[-74.2,11.25],[-73.5,11.3],[-72.9,11.55],[-72.2,12.2],[-71.7,12.45],[-71.3,11.85],[-72.3,11.1],[-72.9,10.4],[-73.3,9.3],[-73.0,9.0],[-72.5,8.3],[-72.4,7.5],[-72.0,7.3],[-71.0,7.0],[-70.0,6.9],[-69.3,6.1],[-67.6,6.2],[-67.8,4.5],[-67.6,3.5],[-67.4,2.1],[-67.8,2.1],[-67.1,1.9],[-66.9,1.2],[-69.4,1.1],[-69.9,0.6],[-69.4,-1.1],[-70.0,-2.5],[-70.0,-4.2],[-72.0,-2.5],[-74.0,-1.0],[-75.3,-0.1],[-76.5,0.3],[-77.4,0.4],[-78.9,1.4],[-78.8,1.8],[-78.2,2.6],[-77.4,3.3],[-77.1,3.9],[-77.3,4.6],[-77.5,5.5],[-77.4,6.5],[-77.9,7.2],[-77.4,8.7]];
+  var TRINIDAD=[[-61.9,10.1],[-61.0,10.1],[-60.9,10.8],[-61.6,10.75],[-61.9,10.1]];
+  var ISLANDS=[[-70.0,12.5,'アルバ'],[-68.95,12.2,'クラサオ'],[-63.9,11.0,'マルガリータ']];
+  var SX=40, X0=-80, Y0=13;
+  function px(lon){return (lon-X0)*SX;} function py(lat){return (Y0-lat)*SX;}
+  function poly(pts){return pts.map(function(p,i){return (i?'L':'M')+px(p[0]).toFixed(1)+' '+py(p[1]).toFixed(1);}).join('')+'Z';}
+  var m=document.getElementById('map-svg');
+  if(m){
+    el('rect',{x:0,y:0,width:900,height:560,fill:'var(--mar-soft)'},m);
+    var land=el('g',{fill:'var(--paper-2)',stroke:'var(--ink-2)','stroke-width':1.2,'stroke-linejoin':'round'},m);
+    el('path',{d:poly(COLOMBIA)},land);
+    el('path',{d:poly(VENEZUELA)},land);
+    el('path',{d:poly(TRINIDAD)},land);
+    // Lake Maracaibo
+    el('ellipse',{cx:px(-71.55),cy:py(9.85),rx:22,ry:34,fill:'var(--mar-soft)',stroke:'var(--ink-2)','stroke-width':.8},m);
+    // Panama / Brazil edge hints
+    el('path',{d:'M'+px(-80)+' '+py(8.9)+'L'+px(-78.5)+' '+py(9.4)+'L'+px(-77.4)+' '+py(8.7),fill:'none',stroke:'var(--ink-2)','stroke-width':1,'stroke-dasharray':'3 3'},m);
+    ISLANDS.forEach(function(s){el('circle',{cx:px(s[0]),cy:py(s[1]),r:3,fill:'var(--paper-2)',stroke:'var(--ink-2)','stroke-width':.8},m);text(m,px(s[0])+6,py(s[1])+4,s[2],{'font-size':10,fill:'var(--ink-2)'});});
+    text(m,px(-79.6),py(12.6),'カリブ海',{'font-size':14,fill:'var(--mar)','font-style':'italic','font-family':'Bodoni Moda, serif'});
+    text(m,px(-73.3),py(5.5),'コロンビア',{'font-size':15,'font-weight':700,fill:'var(--ink-2)',opacity:.75});
+    text(m,px(-66.5),py(7.3),'ベネズエラ',{'font-size':15,'font-weight':700,fill:'var(--ink-2)',opacity:.75});
+    text(m,px(-79.9),py(3.5),'太平洋',{'font-size':12,fill:'var(--mar)','font-style':'italic'});
+    text(m,px(-61.2),py(10.95),'トリニダード',{'font-size':10,fill:'var(--ink-2)'});
+    // arrows: PJ flight to Dominican Rep. (off map) and GGM arrival from Europe
+    el('defs',{},m).innerHTML='<marker id="marr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>';
+    var ar=el('g',{fill:'none',stroke:'currentColor','stroke-width':1.2,'stroke-dasharray':'5 4','marker-end':'url(#marr)'},m);
+    el('path',{d:'M'+px(-66.85)+' '+py(10.6)+' Q '+px(-67.5)+' '+py(14.5)+' '+px(-69.9)+' '+py(13.0)},ar);
+    text(m,px(-69.9)+4,py(13.0)-6,'1958-01-23 ペレス・ヒメネス、ドミニカへ逃亡',{'font-size':10.5});
+    var pts=[
+      // [lon,lat,label,kind,dx,dy,anchor]
+      [-74.19,10.59,'アラカタカ（生地 1927）','g',6,14],
+      [-74.80,10.96,'バランキージャ','g',-6,-8,'end'],
+      [-75.51,10.39,'カルタヘナ','g',-6,12,'end'],
+      [-74.07,4.71,'ボゴタ','g',8,4],
+      [-74.00,5.02,'シパキラ','g',8,-4],
+      [-74.72,8.81,'スクレ（両親の町）','g',8,4],
+      [-66.88,10.49,'カラカス','v',8,14],
+      [-66.99,10.60,'マイケティア空港','v',-8,-6,'end'],
+      [-67.60,10.25,'マラカイ（空軍基地）','v',-8,12,'end'],
+      [-71.64,10.65,'マラカイボ','v',-8,-6,'end'],
+      [-72.22,7.77,'サン・クリストバル','v',8,4],
+      [-63.55,8.12,'シウダー・ボリバル','v',8,4],
+      [-62.07,9.06,'グアシナ島 付近（収容所）','v',8,-6]
+    ];
+    pts.forEach(function(p){
+      var kind=p[3]==='g'?'var(--rojo)':'var(--mar)';
+      el('circle',{cx:px(p[0]),cy:py(p[1]),r:p[2]==='カラカス'?6:4.5,fill:kind,stroke:'var(--paper-2)','stroke-width':1.5},m);
+      text(m,px(p[0])+p[4],py(p[1])+p[5],p[2],{'font-size':11,'text-anchor':p[6]||'start','font-weight':p[2]==='カラカス'?700:400});
+    });
+    // scale bar: 200 km ≈ 1.8 deg lon at ~10N
+    var sx0=px(-79.5),sy0=py(-0.9);
+    el('line',{x1:sx0,y1:sy0,x2:sx0+1.83*SX,y2:sy0,stroke:'currentColor','stroke-width':2},m);
+    text(m,sx0,sy0-6,'200 km（北緯10度付近）',{'font-size':10});
+  }
+
+  /* ---------- Caracas valley schematic ---------- */
+  var c=document.getElementById('caracas-svg');
+  if(c){
+    el('rect',{x:0,y:0,width:560,height:330,fill:'var(--paper-2)'},c);
+    el('rect',{x:0,y:0,width:560,height:58,fill:'var(--mar-soft)'},c);
+    text(c,12,22,'カリブ海',{'font-size':12,fill:'var(--mar)','font-style':'italic'});
+    el('path',{d:'M0 58 L560 58 L560 118 Q 420 90 280 118 Q 140 146 0 118 Z',fill:'var(--paper-3)',stroke:'none'},c);
+    el('path',{d:'M0 118 Q 140 146 280 118 Q 420 90 560 118',fill:'none',stroke:'var(--ink-2)','stroke-width':1.2},c);
+    text(c,280,96,'アビラ山（海岸山脈）標高 2,000m 超',{'font-size':11,'text-anchor':'middle',fill:'var(--ink-2)'});
+    // ports north of the mountain
+    [[150,40,'マイケティア空港'],[300,40,'ラ・グアイラ港']].forEach(function(p){el('circle',{cx:p[0],cy:p[1],r:4,fill:'var(--mar)'},c);text(c,p[0]+7,p[1]+4,p[2],{'font-size':10.5});});
+    // road over the mountain
+    el('path',{d:'M165 46 C 150 80 170 100 185 128',fill:'none',stroke:'var(--ink-2)','stroke-width':1,'stroke-dasharray':'3 3'},c);
+    text(c,100,78,'旧ラ・グアイラ街道',{'font-size':9.5,fill:'var(--ink-2)'});
+    // river Guaire
+    el('path',{d:'M0 262 C 120 250 260 270 400 258 S 520 262 560 266',fill:'none',stroke:'var(--mar)','stroke-width':1.5},c);
+    text(c,470,256,'グアイレ川',{'font-size':10,fill:'var(--mar)'});
+    // sites: x by longitude (-66.95 → 20, -66.83 → 540), y by latitude (10.53 → 130, 10.47 → 300)
+    function cx(lon){return 20+( (lon+66.95)/0.12 )*520;} function cy(lat){return 130+((10.53-lat)/0.06)*170;}
+    // [lon,lat,label,kind,labelX,labelY,anchor,leaderToX,leaderToY]
+    var sites=[
+      [-66.932,10.507,'23 de Enero 団地（旧 2 de Diciembre）','v',20,246,'start',60,236],
+      [-66.920,10.507,'ミラフローレス宮殿／パラシオ・ブランコ','v',60,130,'start',140,136],
+      [-66.916,10.503,'エル・シレンシオ（プラサ・オレアリー）','v',173,226,'start'],
+      [-66.912,10.513,'国立パンテオン','v',180,166,'end'],
+      [-66.895,10.515,'サン・ベルナルディノ地区（GGM の下宿・新居）','g',264,152,'start',262,160],
+      [-66.843,10.485,'ラ・カルロタ空港','v',476,250,'end'],
+      [-66.904,10.481,'ニクソン襲撃地点（5/13）','v',226,286,'start']
+    ];
+    sites.forEach(function(s){
+      var x=cx(s[0]),y=cy(s[1]);
+      if(s[7]){el('line',{x1:x,y1:y,x2:s[7],y2:s[8],stroke:'var(--ink-2)','stroke-width':.8},c);}
+      el('circle',{cx:x,cy:y,r:4.5,fill:s[3]==='g'?'var(--rojo)':'var(--mar)',stroke:'var(--paper-2)','stroke-width':1.5},c);
+      text(c,s[4],s[5],s[2],{'font-size':10.5,'text-anchor':s[6]||'start','font-weight':s[3]==='g'?700:400});
+    });
+    text(c,12,318,'西',{'font-size':11,fill:'var(--ink-2)'});text(c,536,318,'東',{'font-size':11,fill:'var(--ink-2)'});
+    text(c,280,318,'座標から配置した模式図。縮尺・地形は正確ではない',{'font-size':9.5,'text-anchor':'middle',fill:'var(--ink-2)'});
+  }
+
+  /* ---------- Career band chart 1947-1961 ---------- */
+  var k=document.getElementById('career-svg');
+  if(k){
+    var L=70,R=1080,T=40,Y0c=1947,Y1c=1962; function kx(y){return L+(y-Y0c)/(Y1c-Y0c)*(R-L);}
+    for(var y=1947;y<=1961;y++){el('line',{x1:kx(y),y1:T,x2:kx(y),y2:300,stroke:'var(--rule)','stroke-width':1},k);text(k,kx(y)+3,T-8,String(y),{'font-size':11,fill:'var(--ink-2)'});}
+    // highlight 1957.98 - 1959.05
+    el('rect',{x:kx(1958.02),y:T,width:kx(1958.63)-kx(1958.02),height:260,fill:'var(--rojo)','fill-opacity':.12},k);
+    text(k,kx(1958.02)+(kx(1958.63)-kx(1958.02))/2,T+252,'本書の記事',{'font-size':11,fill:'var(--rojo)','font-weight':700,'text-anchor':'middle'});
+    var lanes=[
+      {y:64,label:'媒体',items:[
+        [1948.4,1949.9,'El Universal','var(--oro)'],
+        [1950.0,1952.95,'El Heraldo「La Jirafa」','var(--oro)'],
+        [1954.08,1956.0,'El Espectador','var(--oro)'],
+        [1957.98,1958.37,'Momento','var(--rojo)'],
+        [1958.49,1959.33,'V. Gráfica','var(--mar)'],
+        [1959.35,1961.3,'Prensa Latina','var(--oro)']
+      ]},
+      {y:140,label:'居住地',items:[
+        [1947.0,1948.27,'ボゴタ','var(--ink-2)'],
+        [1948.33,1949.95,'カルタヘナ','var(--ink-2)'],
+        [1950.0,1953.95,'バランキージャ','var(--ink-2)'],
+        [1954.0,1955.53,'ボゴタ','var(--ink-2)'],
+        [1955.55,1957.95,'欧州（ローマ・パリ・ロンドン）','var(--ink-2)'],
+        [1957.98,1959.3,'カラカス','var(--rojo)'],
+        [1959.35,1960.95,'ボゴタ','var(--ink-2)'],
+        [1961.0,1961.45,'NY','var(--ink-2)'],
+        [1961.5,1962,'メキシコ','var(--ink-2)']
+      ]}
+    ];
+    lanes.forEach(function(ln){
+      text(k,8,ln.y+22,ln.label,{'font-size':12,'font-weight':700});
+      ln.items.forEach(function(it,i){
+        var x=kx(it[0]),w=kx(it[1])-kx(it[0]);
+        el('rect',{x:x,y:ln.y,width:Math.max(w,3),height:34,fill:it[3],'fill-opacity':.85,rx:2},k);
+        var lab=text(k,x+5,ln.y+22,it[2],{'font-size':10.5,fill:'var(--paper-2)','font-weight':700});
+        if(w<48){lab.setAttribute('y',ln.y+(i%2?-6:48));lab.setAttribute('fill','currentColor');lab.setAttribute('font-weight','400');lab.setAttribute('x',x+w/2);lab.setAttribute('text-anchor','middle');}
+      });
+    });
+    // key events as ticks, staggered on three levels
+    var ev=[[1948.27,'4/9 ボゴタソ'],[1955.3,'『遭難者』連載'],[1956.02,'Espectador 閉鎖'],[1957.98,'12/23 カラカス着'],[1958.06,'1/23 独裁崩壊'],[1958.22,'3/21 結婚'],[1959.05,'ハバナへ'],[1961.5,'メキシコへ']];
+    ev.forEach(function(e,i){var x=kx(e[0]);var lv=i%3;el('line',{x1:x,y1:210,x2:x,y2:228+lv*20,stroke:'currentColor','stroke-width':1},k);el('circle',{cx:x,cy:210,r:3,fill:'currentColor'},k);text(k,x,242+lv*20,e[1],{'font-size':10.5,'text-anchor':'middle'});});
+    text(k,8,222,'出来事',{'font-size':12,'font-weight':700});
+    text(k,L,340,'帯の始点・終点は月単位の概数。欧州滞在中の1956年1月に El Espectador が発行停止となり、以後は原稿料収入を失った',{'font-size':10,fill:'var(--ink-2)'});
+  }
+
+  /* ---------- 1958 overlay timeline ---------- */
+  var o=document.getElementById('overlay-svg');
+  if(o){
+    var OL=60,OR=940; var months=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+    var mdays=[31,28,31,30,31,30,31,31,30,31,30,31];
+    function doy(mo,d){var n=0;for(var i=0;i<mo-1;i++)n+=mdays[i];return n+d-1;}
+    function ox(mo,d){return OL+doy(mo,d)/365*(OR-OL);}
+    var lanesY={pol:112,ggm:264,art:374};
+    // month grid
+    var acc=0;months.forEach(function(mn,i){var x=OL+acc/365*(OR-OL);el('line',{x1:x,y1:40,x2:x,y2:452,stroke:'var(--rule)'},o);text(o,x+4,34,mn,{'font-size':11,fill:'var(--ink-2)'});acc+=mdays[i];});
+    // lane labels and base lines
+    [['政治',lanesY.pol],['GGM',lanesY.ggm],['記事',lanesY.art]].forEach(function(l){text(o,8,l[1]+4,l[0],{'font-size':12,'font-weight':700});el('line',{x1:OL,y1:l[1],x2:OR,y2:l[1],stroke:'var(--ink-2)','stroke-width':1},o);});
+    // Momento / VG employment bands on GGM lane
+    el('rect',{x:OL,y:lanesY.ggm-52,width:ox(5,16)-OL,height:9,fill:'var(--rojo)','fill-opacity':.5},o);
+    text(o,OL+2,lanesY.ggm-56,'Momento 誌（〜5月中旬、辞職日は推定）',{'font-size':10});
+    el('rect',{x:ox(6,27),y:lanesY.ggm-52,width:OR-ox(6,27),height:9,fill:'var(--mar)','fill-opacity':.5},o);
+    text(o,ox(6,27)+2,lanesY.ggm-56,'Venezuela Gráfica 誌（6/27〜）',{'font-size':10});
+    // politics: three stagger levels (down near, up, down far)
+    var pol=[[1,1,'空軍反乱'],[1,21,'ゼネスト'],[1,23,'独裁崩壊'],[2,9,'ベタンクール帰国'],[5,13,'ニクソン襲撃'],[7,24,'カストロ・レオン出国'],[9,7,'クーデター未遂'],[10,31,'プント・フィホ協定'],[12,7,'大統領選']];
+    var polLv=[0,1,2,0,0,1,0,1,0];
+    pol.forEach(function(e,i){var x=ox(e[0],e[1]);var lv=polLv[i];var ty=lv===1?lanesY.pol-34:(lv===0?lanesY.pol+42:lanesY.pol+66);
+      el('line',{x1:x,y1:lv===1?ty+8:lanesY.pol,x2:x,y2:lv===1?lanesY.pol:ty-12,stroke:'currentColor'},o);
+      el('circle',{cx:x,cy:lanesY.pol,r:4,fill:'currentColor'},o);
+      text(o,x,ty,e[2],{'font-size':10.5,'text-anchor':'middle'});
+      text(o,x,ty+(lv===1?-12:12),e[0]+'/'+e[1],{'font-size':9.5,'text-anchor':'middle',fill:'var(--ink-2)'});});
+    var ggm=[[1,24,'独裁崩壊の号を制作'],[3,21,'結婚（バランキージャ）'],[4,18,'「わが兄フィデル」'],[5,16,'Momento 辞職'],[6,27,'VG 編集長に'],[12,31,'バティスタ崩壊の報']];
+    ggm.forEach(function(e,i){var x=ox(e[0],e[1]);var up=i%2;el('line',{x1:x,y1:lanesY.ggm,x2:x,y2:lanesY.ggm+(up?-18:28),stroke:'currentColor'},o);el('circle',{cx:x,cy:lanesY.ggm,r:4,fill:'var(--oro)',stroke:'currentColor'},o);text(o,x,lanesY.ggm+(up?-24:42),e[2],{'font-size':10.5,'text-anchor':'middle'});});
+    // [no, month, day, hollow(= 無署名・筆名で帰属が編者の判断)]
+    var arts=[[3,1,10,true],[1,1,24,true],[4,1,24,false],[2,2,7,false],[5,2,28,false],[6,3,14,false],[7,4,11,false],[8,5,2,false],[9,5,16,false],[10,7,25,false],[11,8,1,true],[12,8,8,true],[13,8,15,false]];
+    arts.forEach(function(a,i){var x=ox(a[1],a[2]);var col=a[0]>=10?'var(--mar)':'var(--rojo)';var up=i%2;
+      el('line',{x1:x,y1:lanesY.art,x2:x,y2:lanesY.art+(up?-26:26),stroke:col},o);
+      el('circle',{cx:x,cy:lanesY.art+(up?-36:36),r:11,fill:a[3]?'var(--paper-2)':col,stroke:col,'stroke-width':2},o);
+      text(o,x,lanesY.art+(up?-32:40),String(a[0]),{'font-size':11,'text-anchor':'middle','font-weight':700,fill:a[3]?col:'var(--paper-2)'});
+      text(o,x,lanesY.art+(up?-54:62),a[1]+'/'+a[2],{'font-size':9.5,'text-anchor':'middle',fill:'var(--ink-2)'});
+    });
+    text(o,OL,472,'政治の日付は es.wikipedia ほか複数資料で一致。記事の掲載日は Gilard 版の注記と Sorela、Centro Gabo による。',{'font-size':10,fill:'var(--ink-2)'});
+  }
+})();
+</script>
